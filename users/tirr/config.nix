@@ -13,7 +13,8 @@
 
     nixd
 
-    neofetch
+    mosh
+    fastfetch
   ];
 
   home.file = {
