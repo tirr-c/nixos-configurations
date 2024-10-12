@@ -10,14 +10,14 @@ rec {
   };
 
   mkHomeConfiguration =
-    { system, name }:
+    { system, name, extraModules ? [] }:
     let
       pkgs = import nixpkgs { localSystem = system; };
     in
     homeManagerConfiguration {
       inherit pkgs;
 
-      modules = [ homeModules.${name} ];
+      modules = [ homeModules.${name} ] ++ extraModules;
 
       extraSpecialArgs = { inherit inputs; };
     };
