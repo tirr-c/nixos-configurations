@@ -2,14 +2,13 @@
   inputs,
   host,
   lib,
+  useLix ? false,
   ...
 }:
 
 let
-  inherit (builtins) isNull;
   inherit (inputs) lix-module home-manager;
 
-  useLix = !isNull lix-module;
   lixImports = lib.optionals useLix [
     lix-module.nixosModules.default
     {
