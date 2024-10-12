@@ -45,6 +45,7 @@
       ".node-version"
       ".npmrc"
       ".envrc"
+      ".direnv"
     ];
     signing = {
       key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
