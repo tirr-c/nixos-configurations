@@ -5,16 +5,15 @@
   home.homeDirectory = "/home/tirr";
 
   home.packages = with pkgs; [
-    fd
-    ripgrep
     eza
     delta
-    fzf
-
-    nixd
-
-    mosh
     fastfetch
+    fd
+    fzf
+    mosh
+    nixd
+    p7zip
+    ripgrep
   ];
 
   home.file = {
