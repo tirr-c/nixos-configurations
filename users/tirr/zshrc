@@ -1,0 +1,33 @@
+# Terminal title [[[1
+function .tirr-precmd() {
+  print -Pn "\e]0;[%n@%m %~]%#\a"
+}
+
+function .tirr-preexec() {
+  print -Pn "\e]0;[%n@%m %~]%# "
+  echo -n $2
+  echo -ne "\a"
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd .tirr-precmd
+add-zsh-hook preexec .tirr-preexec
+
+# zsh-sensible [[[1
+setopt auto_cd hist_ignore_all_dups share_history
+zstyle ':completion:*' menu select
+
+# zsh-substring-completion [[[1
+setopt complete_in_word
+setopt always_to_end
+WORDCHARS=''
+zmodload -i zsh/complist
+
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# powerlevel10k [[[1
+source ~/.p10k.zsh
+
+# ]]]1
+
+# vim:ft=zsh:tw=100:sw=2:sts=2:et:foldmethod=marker:foldmarker=[[[,]]]
