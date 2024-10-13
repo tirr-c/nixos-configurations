@@ -197,6 +197,10 @@
   programs.zsh = {
     enable = true;
 
+    dirHashes = {
+      nixos = "$HOME/nixos-configurations";
+    };
+
     shellAliases = {
       mv = "mv -i";
       cp = "cp -i";
