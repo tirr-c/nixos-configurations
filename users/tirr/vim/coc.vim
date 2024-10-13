@@ -10,7 +10,7 @@ inoremap <silent><expr><C-h>
       \ coc#pum#visible() ? coc#pum#scroll(0) : "\<C-h>"
 
 let g:copilot_no_tab_map = v:true
-inoremap <silent><expr><tab> coc#pum#confirm()
+inoremap <silent><expr><tab> coc#pum#visible() ? coc#pum#confirm() : "\<Tab>"
 function! s:initTab()
   if exists("*copilot#Accept")
     inoremap <silent><expr><tab>
