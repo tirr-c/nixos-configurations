@@ -6,14 +6,9 @@
 
   home.packages = with pkgs; [
     eza
-    delta
-    fastfetch
-    fd
-    fzf
     mosh
     nixd
     p7zip
-    ripgrep
   ];
 
   home.file = {
@@ -31,12 +26,20 @@
     nix-direnv.enable = true;
   };
 
+  programs.fastfetch.enable = true;
+
+  programs.fd = {
+    enable = true;
+
+    ignores = [ ".git/" ];
+  };
+
   programs.fzf = rec {
     enable = true;
 
-    defaultCommand = "fd --color=always --type f --hidden --follow --exclude '.git'";
+    defaultCommand = "fd --color=always --type f --hidden --follow";
     defaultOptions = [ "--ansi" "--height 40%" ];
-    changeDirWidgetCommand = "fd --color=always --type t --hidden --follow --exclude '.git'";
+    changeDirWidgetCommand = "fd --color=always --type t --hidden --follow";
     fileWidgetCommand = defaultCommand;
   };
 
@@ -176,6 +179,8 @@
     extraConfig = lib.fileContents ./vim/vimrc;
   };
 
+  programs.ripgrep.enable = true;
+
   programs.tmux = {
     enable = true;
 
@@ -265,11 +270,11 @@
       typeset -g FZF_COMPLETION_TRIGGER='\'
 
       function _fzf_compgen_path() {
-          fd --color=always --hidden --follow --exclude ".git" . "$1"
+          fd --color=always --hidden --follow . "$1"
       }
 
       function _fzf_compgen_dir() {
-          fd --color=always --type d --hidden --follow --exclude ".git" . "$1"
+          fd --color=always --type d --hidden --follow . "$1"
       }
     '';
   };
