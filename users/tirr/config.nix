@@ -6,6 +6,8 @@
 
   home.packages = with pkgs; [
     eza
+    kubectl
+    kubelogin-oidc
     mosh
     nixd
     p7zip
@@ -18,6 +20,8 @@
       target = ".p10k.zsh";
     };
   };
+
+  programs.awscli.enable = true;
 
   programs.direnv = {
     enable = true;
