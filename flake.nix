@@ -12,7 +12,7 @@
     };
   };
 
-  outputs = inputs:
+  outputs = inputs@{ nixpkgs, ... }:
     let
       lib =
         let
@@ -21,7 +21,7 @@
         usersLib;
 
       nixosConfigurations = {
-        chise = {
+        chise = nixpkgs.lib.nixosSystem {
           specialArgs = {
             host = "chise";
             useLix = true;
