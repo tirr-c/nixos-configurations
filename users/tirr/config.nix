@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     eza
     kubectl
+    kubectx
     kubelogin-oidc
     mosh
     nixd
