@@ -122,24 +122,24 @@
     plugins =
       let
         vimPlugins = with pkgs.vimPlugins; [
-          fzfWrapper
-          vim-airline-themes
-          vim-sensible
           editorconfig-vim
+          fzfWrapper
+          fzf-vim
           seoul256-vim
-          rust-vim
-          vim-toml
-          vim-javascript
-          typescript-vim
-          vim-vue
-          vim-terraform
-          vim-pug
+          vim-airline
+          vim-airline-themes
+          vim-better-whitespace
+          vim-sensible
         ];
-        vimPluginsWithConfig = [
-          { plugin = pkgs.vimPlugins.fzf-vim; config = lib.fileContents ./vim/fzf.vim; }
-          { plugin = pkgs.vimPlugins.vim-airline; config = lib.fileContents ./vim/airline.vim; }
-          { plugin = pkgs.vimPlugins.vim-better-whitespace; config = "let g:strip_whitespace_on_save = 1"; }
-          { plugin = pkgs.vimPlugins.vim-jsx-pretty; config = lib.fileContents ./vim/jsx.vim; }
+        syntaxPlugins = with pkgs.vimPlugins; [
+          rust-vim
+          typescript-vim
+          vim-javascript
+          vim-jsx-pretty
+          vim-pug
+          vim-terraform
+          vim-toml
+          vim-vue
         ];
         cocPlugins = with pkgs.vimPlugins; [
           coc-tsserver
@@ -151,11 +151,10 @@
           coc-java
         ];
       in
-      vimPlugins ++ vimPluginsWithConfig ++ cocPlugins;
+      vimPlugins ++ syntaxPlugins ++ cocPlugins;
 
     coc = {
       enable = true;
-      pluginConfig = lib.fileContents ./vim/coc.vim;
       settings = {
         diagnostic.warningSign = ">>";
         rust-analyzer = {
@@ -181,7 +180,24 @@
       };
     };
 
-    extraConfig = lib.fileContents ./vim/vimrc;
+    extraConfig =
+      let
+        files = [
+          ./vim/vimrc
+          ./vim/airline.vim
+          ./vim/coc.vim
+          ./vim/fzf.vim
+          ./vim/jsx.vim
+        ];
+        fileContents = builtins.map lib.fileContents files;
+      in
+      builtins.concatStringsSep "\n" fileContents;
+
+    extraWrapperArgs = [
+      "--set"
+      "COC_NODE_PATH"
+      (lib.getExe pkgs.nodejs)
+    ];
   };
 
   programs.ripgrep.enable = true;
