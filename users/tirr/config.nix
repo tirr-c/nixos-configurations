@@ -9,10 +9,11 @@
     kubectl
     kubectx
     kubelogin-oidc
-    mosh
     nixd
     p7zip
-  ];
+  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
+    mosh
+  ]);
 
   home.file = {
     p10k = {
