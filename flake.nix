@@ -3,7 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
