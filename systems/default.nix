@@ -42,6 +42,14 @@ in
     experimental-features = lib.mkBefore [ "nix-command" "flakes" ];
   } // cachix;
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  boot.loader.systemd-boot.configurationLimit = 10;
+
   networking.hostName = lib.mkDefault host;
 
   environment.systemPackages = lib.mkAfter [ pkgs.cachix ];
