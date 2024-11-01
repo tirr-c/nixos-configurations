@@ -46,11 +46,20 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
+  fonts = {
+    packages = with pkgs; [
+      cascadia-code
+    ];
+
+    fontconfig.defaultFonts = {
+      monospace = [
+        "Cascadia Mono"
+      ];
+    };
+  };
+
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
