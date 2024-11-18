@@ -9,7 +9,6 @@
     kubectl
     kubectx
     kubelogin-oidc
-    nixd
     p7zip
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
     mosh
@@ -171,13 +170,6 @@
             "$HOME/.cargo/**"
             "$HOME/.rustup/**"
           ];
-        };
-        languageserver = {
-          nix = {
-            command = "nixd";
-            filetypes = ["nix"];
-            rootPatterns = ["flake.nix"];
-          };
         };
       };
     };
