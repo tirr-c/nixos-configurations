@@ -27,6 +27,11 @@ flake-utils.lib.eachDefaultSystem (
         rustChannel = "1.82.0";
         manifestHash = "sha256-yMuSb5eQPO/bHv+Bcf/US8LVMbf/G/0MSfiPwBhiPpk=";
       };
+
+      rust-1_83 = mkRustShell {
+        rustChannel = "1.83.0";
+        manifestHash = "sha256-s1RPtyvDGJaX/BisLT+ifVfuhDT1nZkZ1NcK8sbwELM=";
+      };
     };
   }
 )
