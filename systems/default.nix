@@ -11,7 +11,7 @@ let
   inherit (inputs) lix-module home-manager;
 
   lixImports = lib.optionals useLix [
-    lix-module.nixosModules.default
+    lix-module.nixosModules.lixFromNixpkgs
     {
       nix.settings = {
         extra-substituters = lib.mkAfter [
