@@ -21,8 +21,9 @@
       lib =
         let
           usersLib = import ./users/lib.nix inputs;
+          devShellsLib = import ./devShells/lib.nix inputs;
         in
-        usersLib;
+        usersLib // devShellsLib;
 
       nixosConfigurations = {
         chise = nixpkgs.lib.nixosSystem {

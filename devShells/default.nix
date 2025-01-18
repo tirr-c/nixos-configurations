@@ -1,11 +1,12 @@
-{ fenix, flake-utils, nixpkgs, ... }:
+inputs@{ flake-utils, nixpkgs, ... }:
 
 flake-utils.lib.eachDefaultSystem (
   system:
   let
     pkgs = import nixpkgs { localSystem = system; };
-    mkNodeJsShell = pkgs.callPackage ./nodejs.nix;
-    mkRustShell = args: pkgs.callPackage ./rust.nix ({ inherit fenix system; } // args);
+    lib = import ./lib.nix inputs;
+    mkNodeJsShell = lib.mkNodeJsShell system;
+    mkRustShell = lib.mkRustShell system;
   in
   {
     devShells = {

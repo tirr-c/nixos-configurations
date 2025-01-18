@@ -3,6 +3,7 @@
   manifestHash,
   pkgs,
   rustChannel,
+  rustDate ? null,
   system,
 
   openssl ? pkgs.openssl,
@@ -11,7 +12,8 @@
 }:
 
 let
-  manifestUrl = "https://static.rust-lang.org/dist/channel-rust-${rustChannel}.toml";
+  optionalRustDate = pkgs.lib.optionalString (rustDate != null) "/${rustDate}";
+  manifestUrl = "https://static.rust-lang.org/dist${optionalRustDate}/channel-rust-${rustChannel}.toml";
   manifest = pkgs.fetchurl {
     url = manifestUrl;
     hash = manifestHash;
