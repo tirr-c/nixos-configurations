@@ -4,6 +4,8 @@
   pkgs,
   rustChannel,
   rustDate ? null,
+  rustExtraComponents ? [],
+  rustExtraTargets ? [],
   system,
 
   openssl ? pkgs.openssl,
@@ -18,8 +20,11 @@ let
     url = manifestUrl;
     hash = manifestHash;
   };
-  toolchain = fenix.packages.${system}.fromManifestFile "${manifest}";
-  inherit (toolchain) completeToolchain;
+  fenix' = fenix.packages.${system};
+  toolchain = fenix'.fromManifestFile "${manifest}";
+  extraComponents = map (component: toolchain.${component}) rustExtraComponents;
+  extraTargets = map (target: (fenix'.targets.${target}.fromManifestFile "${manifest}").rust-std) rustExtraTargets;
+  completeToolchain = fenix'.combine ([toolchain.defaultToolchain] ++ extraComponents ++ extraTargets);
 
   # Copied from naersk
   pkgsDarwin = with pkgs.darwin; [
