@@ -17,6 +17,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.initrd.systemd.enable = true;
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -67,12 +69,31 @@
     LC_TIME = "ko_KR.UTF-8";
   };
 
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = ["*"];
+        settings = {
+          main = {
+            rightalt = "hangeul";
+            rightcontrol = "hanja";
+          };
+        };
+      };
+    };
+  };
+
   fonts = {
     packages = with pkgs; [
       cascadia-code
       pretendard
     ];
 
+    fontDir.enable = true;
+
+    fontconfig.allowBitmaps = false;
+    fontconfig.cache32Bit = true;
     fontconfig.defaultFonts = {
       sansSerif = [
         "Pretendard"
@@ -124,6 +145,12 @@
     curl
     btrfs-progs
   ];
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = ["tirr"];
+  };
 
   programs.zsh.enable = true;
 

@@ -12,4 +12,7 @@
     openssh.authorizedKeys.keyFiles = [ ../../users/tirr/authorized_keys ];
   };
   home-manager.users.tirr = import flakeLib.homeModules.tirr;
+  home-manager.sharedModules = [
+    ./home.nix
+  ];
 }
