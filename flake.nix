@@ -38,6 +38,19 @@
             ./systems/chise/default.nix
           ];
         };
+
+        herta = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            host = "herta";
+            useLix = false;
+            inherit inputs;
+            flakeLib = lib;
+          };
+
+          modules = [
+            ./systems/herta/default.nix
+          ];
+        };
       };
 
       devShells = import ./devShells/default.nix inputs;
