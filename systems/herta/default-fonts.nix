@@ -4,7 +4,7 @@
     "Pretendard JP"
   ];
   monospace = [
-    "Cascadia Mono"
+    "Cascadia Mono NF"
   ];
   emoji = [
     "Twitter Color Emoji"
