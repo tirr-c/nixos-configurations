@@ -112,6 +112,10 @@
     wheelNeedsPassword = false;
   };
 
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
+  '';
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
