@@ -5,6 +5,8 @@
     discord-canary
   ];
 
+  home.language.base = "ko_KR.UTF-8";
+
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
