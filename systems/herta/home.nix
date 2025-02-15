@@ -12,4 +12,9 @@
       fcitx5-hangul
     ];
   };
+
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = import ./default-fonts.nix;
+  };
 }
