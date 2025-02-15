@@ -17,6 +17,10 @@
   boot.initrd.kernelModules = lib.mkAfter ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
 
   # Plasma 6
+  environment.systemPackages = [
+    (pkgs.callPackage ../../packages/sddm-arona/default.nix {})
+    pkgs.kdePackages.sddm-kcm
+  ];
   services.xserver.enable = false;
   services.displayManager.sddm = {
     enable = true;
@@ -24,6 +28,8 @@
       enable = true;
       compositor = "kwin";
     };
+
+    theme = "arona";
   };
   services.desktopManager.plasma6.enable = true;
 
@@ -34,6 +40,8 @@
     themePackages = with pkgs; [
       nixos-bgrt-plymouth
     ];
+
+    font = "${pkgs.pretendard}/share/fonts/opentype/Pretendard-Regular.otf";
   };
   boot.consoleLogLevel = 0;
   boot.initrd.verbose = false;
