@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   hardware.graphics.enable = true;
@@ -14,7 +14,6 @@
     open = true;
     nvidiaSettings = true;
   };
-  boot.initrd.kernelModules = lib.mkAfter ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
 
   # Plasma 6
   environment.systemPackages = [
