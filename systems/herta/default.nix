@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -88,7 +88,16 @@
     };
   };
 
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts.packages =
+      let
+        pipewire-screenaudio = inputs.pipewire-screenaudio.packages.${pkgs.system}.default;
+      in
+      [
+        pipewire-screenaudio
+      ];
+  };
 
   environment.systemPackages = with pkgs; [
     vim
