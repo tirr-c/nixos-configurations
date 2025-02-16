@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./graphical.nix
     ./users.nix
+    ./gaming.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
