@@ -3,6 +3,8 @@
 {
   home.packages = with pkgs; [
     discord-canary
+    loupe
+    vesktop
   ];
 
   home.language.base = "ko_KR.UTF-8";
