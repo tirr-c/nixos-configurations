@@ -122,6 +122,15 @@
     wheelNeedsPassword = false;
   };
 
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
+    cpufreq = {
+      min = 1100000;
+      max = 3900000;
+    };
+  };
+
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
   '';
