@@ -124,11 +124,7 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "ondemand";
-    cpufreq = {
-      min = 1100000;
-      max = 3900000;
-    };
+    cpuFreqGovernor = "schedutil";
   };
 
   services.udev.extraRules = ''
