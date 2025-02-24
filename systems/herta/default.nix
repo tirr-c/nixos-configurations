@@ -116,6 +116,8 @@
 
   services.fwupd.enable = true;
 
+  services.tailscale.enable = true;
+
   programs.zsh.enable = true;
 
   security.sudo = {
