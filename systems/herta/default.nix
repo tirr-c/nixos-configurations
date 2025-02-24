@@ -5,6 +5,7 @@
     ../default.nix
     ./hardware-configuration.nix
     ./graphical.nix
+    ./nvidia.nix
     ./users.nix
     ./gaming.nix
   ];

@@ -3,18 +3,6 @@
 {
   hardware.graphics.enable = true;
 
-  # NVIDIA driver
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement = {
-      enable = true;
-      finegrained = false;
-    };
-    open = true;
-    nvidiaSettings = true;
-  };
-
   # Plasma 6
   environment.systemPackages = [
     (pkgs.callPackage ../../packages/sddm-arona/default.nix {})
