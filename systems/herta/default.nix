@@ -34,6 +34,12 @@
   time.timeZone = "Asia/Seoul";
 
   i18n.defaultLocale = "ko_KR.UTF-8";
+  i18n.supportedLocales = [
+    "C.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
+    "ko_KR.UTF-8/UTF-8"
+    "ja_JP.UTF-8/UTF-8"
+  ];
 
   services.keyd = {
     enable = true;
