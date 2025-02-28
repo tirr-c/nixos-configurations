@@ -2,6 +2,7 @@
   sansSerif = [
     "Pretendard"
     "Pretendard JP"
+    "Noto Sans CJK JP"
   ];
   monospace = [
     "Cascadia Mono NF"

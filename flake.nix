@@ -33,14 +33,16 @@
         in
         usersLib // devShellsLib;
 
+      commonSpecialArgs = {
+        inherit inputs;
+        flakeLib = lib;
+      };
+
       nixosConfigurations = {
         chise = nixpkgs.lib.nixosSystem {
           specialArgs = {
             host = "chise";
-            useLix = true;
-            inherit inputs;
-            flakeLib = lib;
-          };
+          } // commonSpecialArgs;
 
           modules = [
             ./systems/chise/default.nix
@@ -50,13 +52,20 @@
         herta = nixpkgs.lib.nixosSystem {
           specialArgs = {
             host = "herta";
-            useLix = false;
-            inherit inputs;
-            flakeLib = lib;
-          };
+          } // commonSpecialArgs;
 
           modules = [
             ./systems/herta/default.nix
+          ];
+        };
+
+        chihiro = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            host = "chihiro";
+          } // commonSpecialArgs;
+
+          modules = [
+            ./systems/chihiro/default.nix
           ];
         };
       };

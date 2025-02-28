@@ -20,7 +20,7 @@
 
   fonts.fontconfig = {
     enable = true;
-    defaultFonts = import ./default-fonts.nix;
+    defaultFonts = import ../profiles/default-fonts.nix;
   };
 
   programs.alacritty = {

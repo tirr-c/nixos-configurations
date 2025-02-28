@@ -6,7 +6,8 @@
 
 {
   imports = [
-    ../default.nix
+    ../profiles/base.nix
+    ../profiles/lix.nix
     ./hardware-configuration.nix
     ./users.nix
   ];

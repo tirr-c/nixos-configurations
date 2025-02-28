@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   imports = [
@@ -6,8 +6,12 @@
   ];
 
   nix.settings = {
-    substituters = ["https://ezkea.cachix.org"];
-    trusted-public-keys = ["ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="];
+    extra-substituters = lib.mkAfter [
+      "https://ezkea.cachix.org"
+    ];
+    extra-trusted-public-keys = lib.mkAfter [
+      "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
+    ];
   };
 
   programs.steam = {

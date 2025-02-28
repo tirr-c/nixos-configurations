@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -17,11 +17,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;
 
+  boot.initrd.kernelModules = lib.mkAfter ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+
   networking.useNetworkd = true;
-  networking.wireless.iwd.enable = true;
-
-  hardware.bluetooth.enable = true;
-
   systemd.network = {
     enable = true;
     networks = {
@@ -42,21 +40,6 @@
     "ja_JP.UTF-8/UTF-8"
   ];
 
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = ["*"];
-        settings = {
-          main = {
-            rightalt = "hangeul";
-            rightcontrol = "hanja";
-          };
-        };
-      };
-    };
-  };
-
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -64,64 +47,46 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-
-    wireplumber = {
-      enable = true;
-      extraConfig = {
-        "10-bluez" = {
-          "monitor.bluez.properties" = {
-            "bluez5.enable-sbc-xq" = true;
-            "bluez5.enable-msbc" = true;
-            "bluez5.enable-hw-volume" = true;
-          };
-        };
-      };
-    };
   };
 
-  programs.firefox = {
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "chihiro";
+
+  programs.firefox.enable = true;
+
+  programs.neovim = {
     enable = true;
-    nativeMessagingHosts.packages =
-      let
-        pipewire-screenaudio = inputs.pipewire-screenaudio.packages.${pkgs.system}.default;
-      in
-      [
-        pipewire-screenaudio
-      ];
+    viAlias = true;
+    vimAlias = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    curl
-    btrfs-progs
-  ];
-
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["tirr"];
-  };
-
-  services.fwupd.enable = true;
-
-  services.tailscale.enable = true;
+  programs.git.enable = true;
 
   programs.zsh.enable = true;
 
-  security.sudo = {
+  environment.systemPackages = with pkgs; [
+    alacritty
+    btrfs-progs
+    curl
+    git
+    vim
+  ];
+
+  services.fwupd.enable = true;
+
+  services.openssh.enable = true;
+
+  services.tailscale = {
     enable = true;
-    wheelNeedsPassword = false;
+    useRoutingFeatures = "server";
   };
+
+  security.sudo.wheelNeedsPassword = false;
 
   powerManagement = {
     enable = true;
     cpuFreqGovernor = "schedutil";
   };
-
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
-  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
