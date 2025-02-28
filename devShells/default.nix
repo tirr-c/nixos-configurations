@@ -24,16 +24,20 @@ flake-utils.lib.eachDefaultSystem (
         }
       );
 
-      rust-1_83 = mkRustShell {
-        rustChannel = "1.83.0";
-        manifestHash = "sha256-s1RPtyvDGJaX/BisLT+ifVfuhDT1nZkZ1NcK8sbwELM=";
-        rustExtraComponents = ["rust-src" "rust-analyzer"];
+      rust-1_84 = mkRustShell {
+        toolchainSpec = {
+          channel = "1.84.0";
+          sha256 = "sha256-lMLAupxng4Fd9F1oDw8gx+qA0RuF7ou7xhNU8wgs0PU=";
+        };
+        extraComponents = ["rust-src" "rust-analyzer"];
       };
 
-      rust-1_84 = mkRustShell {
-        rustChannel = "1.84.0";
-        manifestHash = "sha256-lMLAupxng4Fd9F1oDw8gx+qA0RuF7ou7xhNU8wgs0PU=";
-        rustExtraComponents = ["rust-src" "rust-analyzer"];
+      rust-1_85 = mkRustShell {
+        toolchainSpec = {
+          channel = "1.85.0";
+          sha256 = "sha256-AJ6LX/Q/Er9kS15bn9iflkUwcgYqRQxiOIL2ToVAXaU=";
+        };
+        extraComponents = ["rust-src" "rust-analyzer"];
       };
     };
   }

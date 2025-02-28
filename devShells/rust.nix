@@ -1,11 +1,9 @@
 {
   fenix,
-  manifestHash,
   pkgs,
-  rustChannel,
-  rustDate ? null,
-  rustExtraComponents ? [],
-  rustExtraTargets ? [],
+  toolchainSpec,
+  extraComponents ? [],
+  extraTargets ? [],
   system,
 
   openssl ? pkgs.openssl,
@@ -14,17 +12,11 @@
 }:
 
 let
-  optionalRustDate = pkgs.lib.optionalString (rustDate != null) "/${rustDate}";
-  manifestUrl = "https://static.rust-lang.org/dist${optionalRustDate}/channel-rust-${rustChannel}.toml";
-  manifest = pkgs.fetchurl {
-    url = manifestUrl;
-    hash = manifestHash;
-  };
   fenix' = fenix.packages.${system};
-  toolchain = fenix'.fromManifestFile "${manifest}";
-  extraComponents = map (component: toolchain.${component}) rustExtraComponents;
-  extraTargets = map (target: (fenix'.targets.${target}.fromManifestFile "${manifest}").rust-std) rustExtraTargets;
-  completeToolchain = fenix'.combine ([toolchain.defaultToolchain] ++ extraComponents ++ extraTargets);
+  toolchain = fenix'.toolchainOf toolchainSpec;
+  extraComponents' = map (component: toolchain.${component}) extraComponents;
+  extraTargets' = map (target: (fenix'.targets.${target}.toolchainOf toolchainSpec).rust-std) extraTargets;
+  completeToolchain = fenix'.combine ([toolchain.defaultToolchain] ++ extraComponents' ++ extraTargets');
 
   # Copied from naersk
   pkgsDarwin = with pkgs.darwin; [
@@ -34,10 +26,14 @@ let
     cf-private
     libiconv
   ];
+
+  computeName = { channel, date ? null, ... }: (
+    if date == null then channel else "${channel}-${date}"
+  );
 in
 
 pkgs.mkShell {
-  name = "rust-${rustChannel}";
+  name = "rust-${computeName toolchainSpec}";
   packages = [
     completeToolchain
     openssl
