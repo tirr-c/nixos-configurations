@@ -7,6 +7,7 @@
     ../profiles/nvidia.nix
     ../profiles/fonts.nix
     ./hardware-configuration.nix
+    ./disks.nix
     ./users.nix
   ];
 
@@ -19,6 +20,7 @@
   boot.initrd.kernelModules = lib.mkAfter ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
 
   networking.useNetworkd = true;
+  networking.hostId = "17648f8c";
   systemd.network = {
     enable = true;
     networks = {
@@ -26,6 +28,27 @@
         matchConfig.Name = "eth*";
         DHCP = "yes";
       };
+    };
+  };
+  services.networkd-dispatcher = {
+    enable = true;
+    rules = {
+      tailscale-offload = {
+        onState = ["routable"];
+        script = ''
+          #!${pkgs.runtimeShell}
+          if [[ $AdministrativeState == 'configured' ]]; then
+            ${lib.getExe pkgs.ethtool} -K $IFACE rx-udp-gro-forwarding on rx-gro-list off
+          fi
+        '';
+      };
+    };
+  };
+  networking.firewall = {
+    interfaces.enp4s0 = {
+      allowedTCPPorts = [
+        8080
+      ];
     };
   };
 
@@ -73,11 +96,29 @@
 
   services.fwupd.enable = true;
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      KbdInteractiveAuthentication = false;
+    };
+  };
 
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";
+  };
+
+  services.keycloak = {
+    enable = true;
+    database.passwordFile = "/etc/nixos/secrets/keycloak-db";
+    settings = {
+      hostname = "https://keycloak.veritas.tirr.network";
+      http-enabled = true;
+      http-host = "0.0.0.0";
+      http-port = 8080;
+      proxy-headers = "xforwarded";
+      proxy-trusted-addresses = "127.0.0.0/8,172.30.1.68";
+    };
   };
 
   security.sudo.wheelNeedsPassword = false;
