@@ -12,5 +12,4 @@
     open = true;
     nvidiaSettings = true;
   };
-  boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
 }
