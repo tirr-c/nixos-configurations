@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   users.users = {
@@ -19,22 +19,15 @@
       ];
     };
 
-    papermc =
-      let
-        papermc = pkgs.papermc.override {
-          version = "1.21.4-214";
-          hash = "";
-        };
-      in
-      {
-        isSystemUser = true;
-        description = "PaperMC";
-        group = "papermc";
-        home = "/srv/minecraft";
-        packages = [
-          papermc
-        ];
-      };
+    papermc = {
+      isSystemUser = true;
+      description = "PaperMC";
+      group = "papermc";
+      home = "/srv/minecraft";
+      packages = with pkgs; [
+        papermc
+      ];
+    };
   };
 
   users.groups = {
