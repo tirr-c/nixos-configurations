@@ -5,6 +5,7 @@
     discord-canary
     loupe
     mpv
+    prismlauncher
     vesktop
   ];
 
