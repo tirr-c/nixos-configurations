@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    discord-canary
+    jetbrains.idea-community-bin
     loupe
     mpv
     prismlauncher
