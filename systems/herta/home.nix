@@ -2,7 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    ffmpeg-full
     jetbrains.idea-community-bin
+    libjxl
     loupe
     mpv
     prismlauncher
