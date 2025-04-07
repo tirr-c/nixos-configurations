@@ -8,6 +8,7 @@
     ../profiles/gaming.nix
     ../profiles/fonts.nix
     ./hardware-configuration.nix
+    ./disks.nix
     ./users.nix
   ];
 
