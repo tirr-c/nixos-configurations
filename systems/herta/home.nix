@@ -85,4 +85,38 @@
       ];
     };
   };
+
+  programs.ssh.enable = true;
+  programs.ssh.matchBlocks = {
+    lunaere = {
+      host = "lunaere-tirrsmb";
+      hostname = "10.128.0.1";
+      user = "tirrsmb";
+      identityFile = "${config.home.homeDirectory}/.ssh/tirrsmb";
+    };
+  };
+
+  xdg.configFile."rclone/lunaere.conf".text = ''
+[lunaere]
+type = sftp
+host = 10.128.0.1
+user = tirrsmb
+key_file = ${config.home.homeDirectory}/.ssh/tirrsmb
+  '';
+
+  systemd.user.services.rclone-lunaere = {
+    Unit = {
+      Description = "Mount lunaere.tirr.network";
+      After = ["network-online.target"];
+    };
+
+    Service = {
+      Type = "notify";
+      ExecStartPre = "/usr/bin/env mkdir -p %h/lunaere-ssh";
+      ExecStart = "${pkgs.rclone}/bin/rclone --config=%h/.config/rclone/lunaere.conf --vfs-cache-mode writes --ignore-checksum mount \"lunaere:/srv/data\" \"lunaere-ssh\"";
+      ExecStop="/bin/fusermount -u %h/lunaere-ssh/%i";
+    };
+
+    Install.WantedBy = ["default.target"];
+  };
 }
