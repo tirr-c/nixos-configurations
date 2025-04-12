@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   # NVIDIA driver
@@ -12,4 +12,7 @@
     open = true;
     nvidiaSettings = true;
   };
+
+  # https://github.com/NixOS/nixpkgs/issues/334180
+  boot.kernelModules = lib.mkAfter ["nvidia_uvm"];
 }
