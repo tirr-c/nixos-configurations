@@ -96,6 +96,8 @@
     git
     curl
     btrfs-progs
+    wineWowPackages.staging
+    winetricks
   ];
 
   programs._1password.enable = true;
