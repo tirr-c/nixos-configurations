@@ -8,8 +8,8 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: {
-        version = "1.21.4-214";
-        hash = "sha256-qwMNaJAPO4/weoR4PSj1s9imx6JL7vD8t3ABHd8EWkA=";
+        version = "1.21.5-22";
+        hash = "sha256-qV6l8ZhHEtGt1/weX+xlL7mohGKF5cjImvWfKINUidg=";
 
         src =
           let
@@ -55,11 +55,35 @@ in
   };
 
   services.caddy.enable = true;
-  services.caddy.virtualHosts = {
-    ":8123" = {
-      extraConfig = ''
-        root * ${serverDirectory}/plugins/dynmap/web
-      '';
-    };
+
+  services.caddy.globalConfig = ''
+    skip_install_trust
+  '';
+
+  # Bluemap
+  services.caddy.virtualHosts."https://100.64.0.3:8100" = {
+    extraConfig = ''
+      tls internal
+
+      root * ${serverDirectory}/bluemap/web
+
+      file_server
+
+      @tiles path_regexp ^/maps/[^/]+/tiles/
+      reverse_proxy @tiles localhost:58100 {
+        @ok status 200
+        @empty status 204
+        handle_response @ok {
+          header >cache-control "max-age=30, must-revalidate"
+        }
+        handle_response @empty {
+          header >cache-control "no-store"
+        }
+      }
+
+      @live path_regexp ^/maps/[^/]+/tiles/
+      header @live ?cache-control "no-store"
+      reverse_proxy /maps/* localhost:58100
+    '';
   };
 }
