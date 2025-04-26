@@ -24,18 +24,18 @@ flake-utils.lib.eachDefaultSystem (
         }
       );
 
-      rust-1_84 = mkRustShell {
-        toolchainSpec = {
-          channel = "1.84.0";
-          sha256 = "sha256-lMLAupxng4Fd9F1oDw8gx+qA0RuF7ou7xhNU8wgs0PU=";
-        };
-        extraComponents = ["rust-src" "rust-analyzer"];
-      };
-
       rust-1_85 = mkRustShell {
         toolchainSpec = {
           channel = "1.85.0";
           sha256 = "sha256-AJ6LX/Q/Er9kS15bn9iflkUwcgYqRQxiOIL2ToVAXaU=";
+        };
+        extraComponents = ["rust-src" "rust-analyzer"];
+      };
+
+      rust-1_86 = mkRustShell {
+        toolchainSpec = {
+          channel = "1.86.0";
+          sha256 = "sha256-X/4ZBHO3iW0fOenQ3foEvscgAPJYl2abspaBThDOukI=";
         };
         extraComponents = ["rust-src" "rust-analyzer"];
       };
