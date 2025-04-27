@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./disks.nix
     ./papermc.nix
+    ./jellyfin.nix
     ./users.nix
   ];
 
