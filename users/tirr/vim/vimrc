@@ -29,8 +29,6 @@ endif
 
 set backupcopy=yes
 
-set pastetoggle=<F8>
-
 set termguicolors
 set guioptions-=m
 set guioptions-=T
