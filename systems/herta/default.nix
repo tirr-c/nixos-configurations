@@ -99,6 +99,13 @@
 
   services.fwupd.enable = true;
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      KbdInteractiveAuthentication = false;
+    };
+  };
+
   services.tailscale.enable = true;
 
   programs.zsh.enable = true;
