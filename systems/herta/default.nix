@@ -110,6 +110,8 @@
 
   programs.zsh.enable = true;
 
+  virtualisation.waydroid.enable = true;
+
   security.sudo = {
     enable = true;
     wheelNeedsPassword = false;
