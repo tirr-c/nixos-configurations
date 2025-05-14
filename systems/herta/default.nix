@@ -8,6 +8,7 @@
     ../profiles/gaming.nix
     ../profiles/fonts.nix
     ./hardware-configuration.nix
+    ./waydroid.nix
     ./disks.nix
     ./users.nix
   ];
@@ -109,8 +110,6 @@
   services.tailscale.enable = true;
 
   programs.zsh.enable = true;
-
-  virtualisation.waydroid.enable = true;
 
   security.sudo = {
     enable = true;

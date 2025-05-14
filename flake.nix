@@ -10,6 +10,10 @@
       url = "github:nix-community/home-manager?ref=release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,7 +24,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, ... }:
+  outputs = inputs@{ nixpkgs, nur, ... }:
     let
       lib =
         let
@@ -51,6 +55,7 @@
           } // commonSpecialArgs;
 
           modules = [
+            nur.modules.nixos.default
             ./systems/herta/default.nix
           ];
         };
