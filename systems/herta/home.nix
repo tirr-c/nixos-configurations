@@ -8,6 +8,7 @@
     loupe
     mpv
     prismlauncher
+    ungoogled-chromium
     vesktop
   ];
 
