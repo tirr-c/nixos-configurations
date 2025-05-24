@@ -1,8 +1,11 @@
-{ flakeLib, pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = {
+    inherit inputs;
+  };
 
   users.users.tirr = {
     isNormalUser = true;
@@ -11,8 +14,5 @@
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [ ../../users/tirr/authorized_keys ];
   };
-  home-manager.users.tirr = import flakeLib.homeModules.tirr;
-  home-manager.sharedModules = [
-    ./home.nix
-  ];
+  home-manager.users.tirr = ./home.nix;
 }

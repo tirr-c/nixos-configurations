@@ -283,15 +283,21 @@
       }
     ];
 
-    initExtraFirst = ''
-      stty stop undef
-      export GPG_TTY=$TTY
+    initContent = lib.mkMerge [
+      (
+        lib.mkBefore ''
+          stty stop undef
+          export GPG_TTY=$TTY
 
-      if [[ -r "${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-    '';
-    initExtra = lib.fileContents ./zshrc;
+          if [[ -r "${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+            source "${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
+          fi
+        ''
+      )
+      (
+        lib.mkAfter (lib.fileContents ./zshrc)
+      )
+    ];
 
     envExtra = ''
       typeset -g FZF_COMPLETION_TRIGGER='\'

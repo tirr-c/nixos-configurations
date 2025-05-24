@@ -1,4 +1,4 @@
-{ flakeLib, pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home-manager.useGlobalPkgs = true;
@@ -10,5 +10,5 @@
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [ ../../users/tirr/authorized_keys ];
   };
-  home-manager.users.tirr = import flakeLib.homeModules.tirr;
+  home-manager.users.tirr = import inputs.self.lib.homeModules.tirr;
 }

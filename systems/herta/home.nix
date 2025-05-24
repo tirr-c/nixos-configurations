@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.self.lib.homeModules.tirr
+  ];
+
   home.packages = with pkgs; [
     calibre
     ffmpeg-full
@@ -16,7 +20,8 @@
   home.language.base = "ko_KR.UTF-8";
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-gtk
       fcitx5-hangul
