@@ -33,6 +33,8 @@
         in
         usersLib // devShellsLib;
 
+      overlays = import ./overlays inputs;
+
       commonSpecialArgs = {
         inherit inputs;
         flakeLib = lib;
@@ -74,6 +76,6 @@
       devShells = import ./devShells/default.nix inputs;
     in
 
-    { inherit nixosConfigurations lib; }
+    { inherit nixosConfigurations lib overlays; }
     // devShells;
 }
