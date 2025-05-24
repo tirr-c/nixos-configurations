@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    calibre
     ffmpeg-full
     jetbrains.idea-community-bin
     libjxl
