@@ -39,10 +39,7 @@
       tailscale-offload = {
         onState = ["routable"];
         script = ''
-          #!${pkgs.runtimeShell}
-          if [[ $AdministrativeState == 'configured' ]]; then
-            ${lib.getExe pkgs.ethtool} -K $IFACE rx-udp-gro-forwarding on rx-gro-list off
-          fi
+          ${lib.getExe pkgs.ethtool} -K "$IFACE" rx-udp-gro-forwarding on rx-gro-list off
         '';
       };
     };
