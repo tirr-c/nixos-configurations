@@ -53,6 +53,7 @@
           main = {
             rightalt = "hangeul";
             rightcontrol = "hanja";
+            rightshift = "rightshift";
           };
         };
       };

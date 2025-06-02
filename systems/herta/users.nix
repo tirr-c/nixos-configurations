@@ -10,7 +10,7 @@
   users.users.tirr = {
     isNormalUser = true;
     description = "Wonwoo Choi";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "keyd" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [ ../../users/tirr/authorized_keys ];
   };
