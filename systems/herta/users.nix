@@ -15,4 +15,8 @@
     openssh.authorizedKeys.keyFiles = [ ../../users/tirr/authorized_keys ];
   };
   home-manager.users.tirr = ./home.nix;
+
+  users.groups = {
+    keyd = {};
+  };
 }
