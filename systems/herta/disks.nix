@@ -7,7 +7,11 @@
     options = ["subvol=@"];
   };
 
-  boot.initrd.luks.devices."luks-d462a9cf-85db-49ae-b94e-ab9e2b19a915".device = "/dev/disk/by-uuid/d462a9cf-85db-49ae-b94e-ab9e2b19a915";
+  boot.initrd.luks.devices."luks-d462a9cf-85db-49ae-b94e-ab9e2b19a915" = {
+    device = "/dev/disk/by-uuid/d462a9cf-85db-49ae-b94e-ab9e2b19a915";
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/A052-8DAF";
