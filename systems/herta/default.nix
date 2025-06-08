@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -59,6 +59,7 @@
       };
     };
   };
+  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = lib.mkAfter ["CAP_SETGID"];
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
