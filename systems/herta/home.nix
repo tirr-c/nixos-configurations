@@ -119,9 +119,10 @@ key_file = ${config.home.homeDirectory}/.ssh/tirrsmb
 
     Service = {
       Type = "notify";
-      ExecStartPre = "/usr/bin/env mkdir -p %h/lunaere-ssh";
+      ExecStartPre = "/run/current-system/sw/bin/mkdir -p %h/lunaere-ssh";
       ExecStart = "${pkgs.rclone}/bin/rclone --config=%h/.config/rclone/lunaere.conf --vfs-cache-mode writes --ignore-checksum mount \"lunaere:/srv/data\" \"lunaere-ssh\"";
-      ExecStop="/bin/fusermount -u %h/lunaere-ssh/%i";
+      ExecStop="/run/wrappers/bin/fusermount -u %h/lunaere-ssh/%i";
+      Environment = ["PATH=/run/wrappers/bin:$PATH"];
     };
 
     Install.WantedBy = ["default.target"];
