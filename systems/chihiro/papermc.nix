@@ -8,8 +8,8 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: {
-        version = "1.21.5-22";
-        hash = "sha256-qV6l8ZhHEtGt1/weX+xlL7mohGKF5cjImvWfKINUidg=";
+        version = "1.21.5-58";
+        hash = "sha256-dP8tXxAtLNFEwwssVpflwrMVNMLuvKJtVXa+SvGwbVU=";
 
         src =
           let
