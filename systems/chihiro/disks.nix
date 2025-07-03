@@ -17,7 +17,12 @@
     ];
   };
 
-  boot.initrd.luks.devices."luks-a20b886e-ee6b-4cdf-91b4-5630b58c7c58".device = "/dev/disk/by-uuid/a20b886e-ee6b-4cdf-91b4-5630b58c7c58";
+  #boot.initrd.supportedFilesystems = ["vfat"];
+  boot.initrd.luks.devices."luks-a20b886e-ee6b-4cdf-91b4-5630b58c7c58" = {
+    device = "/dev/disk/by-uuid/a20b886e-ee6b-4cdf-91b4-5630b58c7c58";
+    #keyFile = "/tmp/keys/key-0:UUID=4FC5-A53F";
+    bypassWorkqueues = true;
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/3554-562C";
