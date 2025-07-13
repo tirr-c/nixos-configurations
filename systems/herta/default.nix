@@ -4,7 +4,7 @@
   imports = [
     ../profiles/base.nix
     ../profiles/graphical.nix
-    ../profiles/nvidia.nix
+    #../profiles/nvidia.nix
     ../profiles/gaming.nix
     ../profiles/fonts.nix
     ./hardware-configuration.nix
