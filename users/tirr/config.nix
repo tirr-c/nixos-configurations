@@ -10,7 +10,7 @@
     kubectx
     kubelogin-oidc
     nixd
-    p7zip
+    p7zip-rar
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
     mosh
   ]);
