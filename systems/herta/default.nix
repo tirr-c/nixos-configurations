@@ -51,6 +51,7 @@
         ids = ["*"];
         settings = {
           main = {
+            leftshift = "leftshift";
             rightalt = "hangeul";
             rightcontrol = "hanja";
             rightshift = "rightshift";
