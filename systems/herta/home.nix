@@ -9,6 +9,7 @@
     calibre
     ffmpeg-full
     jetbrains.idea-community-bin
+    krita
     libjxl
     loupe
     mpv
