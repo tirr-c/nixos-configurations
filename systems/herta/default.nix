@@ -4,7 +4,6 @@
   imports = [
     ../profiles/base.nix
     ../profiles/graphical.nix
-    #../profiles/nvidia.nix
     ../profiles/gaming.nix
     ../profiles/fonts.nix
     ./hardware-configuration.nix
@@ -111,6 +110,11 @@
   };
 
   services.tailscale.enable = true;
+
+  services.sunshine = {
+    enable = true;
+    capSysAdmin = true;
+  };
 
   programs.zsh.enable = true;
 
