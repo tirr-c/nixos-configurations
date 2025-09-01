@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -11,6 +11,10 @@
     ./waydroid.nix
     ./disks.nix
     ./users.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.self.overlays.tailscale-test-failure-workaround
   ];
 
   nixpkgs.config.allowUnfree = true;
