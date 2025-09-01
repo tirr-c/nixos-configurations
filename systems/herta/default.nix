@@ -6,6 +6,7 @@
     ../profiles/graphical.nix
     ../profiles/gaming.nix
     ../profiles/fonts.nix
+    ../profiles/obs.nix
     ./hardware-configuration.nix
     ./waydroid.nix
     ./disks.nix
