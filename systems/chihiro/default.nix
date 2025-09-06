@@ -1,10 +1,11 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   imports = [
     ../profiles/base.nix
     ../profiles/graphical.nix
     ../profiles/nvidia.nix
+    ../profiles/gaming.nix
     ../profiles/fonts.nix
     ./hardware-configuration.nix
     ./disks.nix
@@ -12,6 +13,10 @@
     ./calibre.nix
     ./jellyfin.nix
     ./users.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.self.overlays.tailscale-test-failure-workaround
   ];
 
   nixpkgs.config.allowUnfree = true;
