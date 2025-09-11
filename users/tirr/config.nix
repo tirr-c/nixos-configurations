@@ -166,12 +166,13 @@
             chainingHints.enable = true;
             parameterHints.enable = false;
           };
-          workspace.ignoredFolders = [
-            "$HOME"
-            "$HOME/.cargo/**"
-            "$HOME/.rustup/**"
-          ];
         };
+        workspace.ignoredFolders = [
+          "${config.home.homeDirectory}"
+          "${config.home.homeDirectory}/.cargo/**"
+          "${config.home.homeDirectory}/.rustup/**"
+          "${builtins.storeDir}/**"
+        ];
         languageserver = {
           nix = {
             command = "nixd";
