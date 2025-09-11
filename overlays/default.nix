@@ -14,4 +14,7 @@
         old.checkFlags;
     });
   });
+  p7zip-default-unfree = (_: prev: {
+    p7zip = prev.p7zip.override { enableUnfree = true; };
+  });
 }
