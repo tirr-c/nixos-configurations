@@ -188,9 +188,17 @@
         files = [
           ./vim/vimrc
           ./vim/airline.vim
-          ./vim/coc.vim
           ./vim/fzf.vim
           ./vim/jsx.vim
+        ];
+        fileContents = builtins.map lib.fileContents files;
+      in
+      builtins.concatStringsSep "\n" fileContents;
+
+    extraLuaConfig =
+      let
+        files = [
+          ./vim/coc.lua
         ];
         fileContents = builtins.map lib.fileContents files;
       in
