@@ -26,6 +26,8 @@
   networking.useNetworkd = true;
   networking.wireless.iwd.enable = true;
 
+  hardware.enableRedistributableFirmware = true;
+
   hardware.bluetooth.enable = true;
 
   systemd.network = {
