@@ -15,10 +15,6 @@
     ./users.nix
   ];
 
-  nixpkgs.overlays = [
-    inputs.self.overlays.tailscale-test-failure-workaround
-  ];
-
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;

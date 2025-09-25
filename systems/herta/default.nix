@@ -15,7 +15,6 @@
 
   nixpkgs.overlays = with inputs.self.overlays; [
     p7zip-default-unfree
-    tailscale-test-failure-workaround
   ];
 
   nixpkgs.config.allowUnfree = true;
