@@ -26,6 +26,8 @@
   networking.useNetworkd = true;
   networking.wireless.iwd.enable = true;
 
+  networking.interfaces.eno1.wakeOnLan.enable = true;
+
   hardware.enableRedistributableFirmware = true;
 
   hardware.bluetooth.enable = true;
