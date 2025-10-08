@@ -1,24 +1,21 @@
 {
   fetchFromGitHub,
   libhwy,
-  libhwyVersion ? "1.2.0-unstable",
-  libhwyRev ? "c02c0e318b22b1e456601ec392d80e679ef6bc1e",
-  libhwyHash ? "sha256-LOLIv40Rp5GECnQM+khvoDmlj/yOp0RmX5Oyj/F+uas=",
   libjxl,
   libjxlVersion ? "0.12.0-dev",
-  libjxlRev ? "5e1e55301ce55b3a7241ca5b5a981633498558f4",
-  libjxlHash ? "sha256-vA+ojEQgd9odVylpVbIxFmd/CJewwjPd9TPlNt3tWk4=",
+  libjxlRev ? "2a4f12b6ef22672e0f4a399df3b8589856ebace2",
+  libjxlHash ? "sha256-uy+G/EFnZMTydzvpyXaGDCff7VSPmz9yC2ySnXqJLew=",
   ninja,
 }:
 
 let
   libhwy' = libhwy.overrideAttrs {
-    version = "${libhwyVersion}-${libhwyRev}";
+    version = "1.2.0";
     src = fetchFromGitHub {
       owner = "google";
       repo = "highway";
-      rev = libhwyRev;
-      hash = libhwyHash;
+      rev = "1.2.0";
+      hash = "sha256-yJQH5ZkpEdJ6lsTAt6yJSN3TQnVoxNpkbChENaxhcHo=";
     };
   };
 
@@ -41,4 +38,17 @@ libjxl'.overrideAttrs (prev: {
 
   nativeBuildInputs = prev.nativeBuildInputs ++ [ninja];
   cmakeFlags = ["-GNinja"] ++ prev.cmakeFlags;
+
+  postPatch = ''
+    # Make sure we do not accidentally build against some of the vendored dependencies
+    # If it asks you to "run deps.sh to fetch the build dependencies", then you are probably missing a JPEGXL_FORCE_SYSTEM_* flag
+    shopt -s extglob
+    rm -rf third_party/!(sjpeg)/
+    shopt -u extglob
+
+    substituteInPlace plugins/gdk-pixbuf/jxl.thumbnailer \
+      --replace '/usr/bin/gdk-pixbuf-thumbnailer' "$out/libexec/gdk-pixbuf-thumbnailer-jxl"
+    substituteInPlace CMakeLists.txt \
+      --replace 'sh$' 'sh( -e$|$)'
+  '';
 })
