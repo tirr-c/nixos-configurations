@@ -102,6 +102,12 @@
       user = "tirrsmb";
       identityFile = "${config.home.homeDirectory}/.ssh/tirrsmb";
     };
+
+    aws = {
+      host = "lydie.mitir.social suelle.mitir.social";
+      user = "ec2-user";
+      identityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
+    };
   };
 
   xdg.configFile."rclone/lunaere.conf".text = ''
