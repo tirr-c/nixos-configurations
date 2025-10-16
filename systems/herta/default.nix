@@ -125,6 +125,11 @@
     capSysAdmin = true;
   };
 
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
+
   programs.zsh.enable = true;
 
   programs.nix-ld = {
