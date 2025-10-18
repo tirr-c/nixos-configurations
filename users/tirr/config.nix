@@ -6,6 +6,7 @@
 
   home.packages = with pkgs; [
     eza
+    jq
     kubectl
     kubectx
     kubelogin-oidc
