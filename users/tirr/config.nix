@@ -121,6 +121,8 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    withNodeJs = true;
+
     plugins =
       let
         vimPlugins = with pkgs.vimPlugins; [
@@ -132,6 +134,17 @@
           vim-airline-themes
           vim-better-whitespace
           vim-sensible
+        ] ++ [
+          {
+            plugin = pkgs.vimPlugins.nvim-lspconfig;
+            type = "lua";
+            config = lib.fileContents ./vim/lsp.lua;
+          }
+          {
+            plugin = pkgs.vimPlugins.nvim-notify;
+            type = "lua";
+            config = lib.fileContents ./vim/notify.lua;
+          }
         ];
         syntaxPlugins = with pkgs.vimPlugins; [
           rust-vim
@@ -143,45 +156,8 @@
           vim-toml
           vim-vue
         ];
-        cocPlugins = with pkgs.vimPlugins; [
-          coc-tsserver
-          coc-json
-          coc-yaml
-          coc-highlight
-          coc-rust-analyzer
-          coc-clangd
-          coc-java
-        ];
       in
-      vimPlugins ++ syntaxPlugins ++ cocPlugins;
-
-    coc = {
-      enable = true;
-      settings = {
-        diagnostic.warningSign = ">>";
-        rust-analyzer = {
-          check.command = "clippy";
-          inlayHints = {
-            typeHints.enable = false;
-            chainingHints.enable = true;
-            parameterHints.enable = false;
-          };
-        };
-        workspace.ignoredFolders = [
-          "${config.home.homeDirectory}"
-          "${config.home.homeDirectory}/.cargo/**"
-          "${config.home.homeDirectory}/.rustup/**"
-          "${builtins.storeDir}/**"
-        ];
-        languageserver = {
-          nix = {
-            command = "nixd";
-            filetypes = ["nix"];
-            rootPatterns = ["flake.nix"];
-          };
-        };
-      };
-    };
+      vimPlugins ++ syntaxPlugins;
 
     extraConfig =
       let
@@ -194,21 +170,6 @@
         fileContents = builtins.map lib.fileContents files;
       in
       builtins.concatStringsSep "\n" fileContents;
-
-    extraLuaConfig =
-      let
-        files = [
-          ./vim/coc.lua
-        ];
-        fileContents = builtins.map lib.fileContents files;
-      in
-      builtins.concatStringsSep "\n" fileContents;
-
-    extraWrapperArgs = [
-      "--set"
-      "COC_NODE_PATH"
-      (lib.getExe pkgs.nodejs)
-    ];
   };
 
   programs.ripgrep.enable = true;

@@ -223,10 +223,7 @@ execute printf('hi jsxAttrib ctermfg=216 guifg=%s cterm=italic', s:color(216))
 " coc.nvim
 execute 'hi NormalFloat ctermbg=235 guibg=' . s:color(235)
 execute printf('hi Pmenu ctermbg=235 ctermfg=252 guibg=%s guifg=%s', s:color(235), s:color(252))
-execute printf('hi CocPumMenu ctermbg=235 ctermfg=252 guibg=%s guifg=%s', s:color(235), s:color(252))
-execute 'hi CocMenuSel ctermbg=238 guibg=' . s:color(238)
-execute 'hi CocFloating ctermbg=235 guibg=' . s:color(235)
-execute 'hi CocHighlightText ctermbg=240 guibg=' . s:color(240)
+execute 'hi PmenuSel ctermbg=238 guibg=' . s:color(238)
 hi Conceal ctermfg=248 ctermbg=NONE guifg=#a8a8a8 guibg=NONE
 hi DiagnosticError ctermfg=168 guifg=#d75f87
 hi DiagnosticSignError ctermfg=168 ctermbg=234 guifg=#d75f87 guibg=#1c1c1c
@@ -236,5 +233,3 @@ hi DiagnosticInfo ctermfg=222 guifg=#ffd787
 hi DiagnosticSignInfo ctermfg=222 ctermbg=234 guifg=#ffd787 guibg=#1c1c1c
 hi DiagnosticHint guifg=#add4fb
 hi DiagnosticSignHint ctermfg=7 ctermbg=234 guifg=#add4fb guibg=#1c1c1c
-hi CocCodeLens ctermfg=252 guifg=#d0d0d0
-hi CocInlayHint ctermfg=153 cterm=italic guifg=#add4fb gui=italic
