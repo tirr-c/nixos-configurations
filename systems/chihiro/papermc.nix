@@ -8,19 +8,13 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: {
-        version = "1.21.5-58";
-        hash = "sha256-dP8tXxAtLNFEwwssVpflwrMVNMLuvKJtVXa+SvGwbVU=";
+        version = "1.21.10-86";
+        hash = "sha256-7ZaFzHxJTVLQEb4Fml0wGIJf1iNTLKNYCOrkkk8TLmU=";
 
-        src =
-          let
-            version-split = lib.strings.splitString "-" finalAttrs.version;
-            mcVersion = builtins.elemAt version-split 0;
-            buildNum = builtins.elemAt version-split 1;
-          in
-          pkgs.fetchurl {
-            url = "https://api.papermc.io/v2/projects/paper/versions/${mcVersion}/builds/${buildNum}/downloads/paper-${mcVersion}-${buildNum}.jar";
-            inherit (finalAttrs) hash;
-          };
+        src = pkgs.fetchurl {
+          url = "https://fill-data.papermc.io/v1/objects/ed9685cc7c494d52d011be059a5d3018825fd623532ca35808eae4924f132e65/paper-1.21.10-86.jar";
+          inherit (finalAttrs) hash;
+        };
       });
     })
   ];
