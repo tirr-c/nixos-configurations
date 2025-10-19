@@ -49,38 +49,37 @@
 
       font.size = 12;
 
-      # seoul256
       colors = {
         normal = {
-          black = "#4e4e4e";
-          red = "#d68787";
-          green = "#5f865f";
-          yellow = "#d8af5f";
-          blue = "#85add4";
-          magenta = "#d7afaf";
-          cyan = "#87afaf";
-          white = "#d0d0d0";
+          black = "#2b2b2b";
+          red = "#e5848c";
+          green = "#75b168";
+          yellow = "#c9983f";
+          blue = "#6ca4eb";
+          magenta = "#cf88c8";
+          cyan = "#00b5b5";
+          white = "#b7b7b7";
         };
         bright = {
-          black = "#626262";
-          red = "#d75f87";
-          green = "#87af87";
+          black = "#4a4a4a";
+          red = "#feb9bd";
+          green = "#acd5a3";
           yellow = "#ffd787";
-          blue = "#add4fb";
-          magenta = "#ffafaf";
-          cyan = "#87d7d7";
-          white = "#e4e4e4";
+          blue = "#a8ceff";
+          magenta = "#ecbbe7";
+          cyan = "#86d8d7";
+          white = "#e8e8e8";
         };
 
         primary = {
-          foreground = "#d0d0d0";
-          bright_foreground = "#e4e4e4";
-          background = "#121212";
+          foreground = "#cecece";
+          bright_foreground = "#e8e8e8";
+          background = "#1f1f1f";
         };
 
         cursor = {
-          text = "#121212";
-          cursor = "#d0d0d0";
+          text = "#1f1f1f";
+          cursor = "#cecece";
         };
       };
 
