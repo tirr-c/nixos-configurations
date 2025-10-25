@@ -5,6 +5,10 @@
     inputs.aagl.nixosModules.default
   ];
 
+  nixpkgs.overlays = with inputs.self.overlays; [
+    mbedtls
+  ];
+
   nix.settings = {
     extra-substituters = lib.mkAfter [
       "https://ezkea.cachix.org"

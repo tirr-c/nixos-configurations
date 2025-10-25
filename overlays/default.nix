@@ -5,4 +5,8 @@
   p7zip-default-unfree = (_: prev: {
     p7zip = prev.p7zip.override { enableUnfree = true; };
   });
+
+  mbedtls = (final: prev: {
+    mbedtls_2 = final.mbedtls;
+  });
 }
