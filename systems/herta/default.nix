@@ -11,6 +11,7 @@
     ./waydroid.nix
     ./disks.nix
     ./users.nix
+    ./vm.nix
   ];
 
   nixpkgs.overlays = with inputs.self.overlays; [
