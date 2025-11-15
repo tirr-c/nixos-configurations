@@ -1,5 +1,9 @@
 { config, pkgs, lib, ... }:
 
+let
+  tirrcolo = pkgs.callPackage ../../packages/tirrcolo {};
+in
+
 {
   home.username = "tirr";
   home.homeDirectory = "/home/tirr";
@@ -130,7 +134,7 @@
           editorconfig-vim
           fzfWrapper
           fzf-vim
-          seoul256-vim
+          tirrcolo
           vim-airline
           vim-airline-themes
           vim-better-whitespace
