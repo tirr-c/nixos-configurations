@@ -15,6 +15,7 @@
   ];
 
   nixpkgs.overlays = with inputs.self.overlays; [
+    libjxl-dev
     p7zip-default-unfree
   ];
 

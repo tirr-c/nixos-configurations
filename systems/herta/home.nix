@@ -10,7 +10,7 @@
     ffmpeg-full
     jetbrains.idea-community-bin
     krita
-    libjxl
+    libjxl-dev
     loupe
     mpv
     prismlauncher

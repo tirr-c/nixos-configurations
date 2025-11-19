@@ -3,8 +3,8 @@
   libhwy,
   libjxl,
   libjxlVersion ? "0.12.0-dev",
-  libjxlRev ? "2a4f12b6ef22672e0f4a399df3b8589856ebace2",
-  libjxlHash ? "sha256-uy+G/EFnZMTydzvpyXaGDCff7VSPmz9yC2ySnXqJLew=",
+  libjxlRev ? "4075de9a7dfd8a3d9433ab21f525e5560d25abe1",
+  libjxlHash ? "sha256-x7i6DDitNDKQfTg31iS2XLHrHDgZNwWNcS6RK3Y9Iyo=",
   ninja,
 }:
 
