@@ -1,5 +1,11 @@
 { config, lib, pkgs, inputs, ... }:
 
+let
+  deadbeef = pkgs.deadbeef.override {
+    wavpackSupport = true;
+  };
+in
+
 {
   imports = [
     inputs.self.lib.homeModules.tirr
@@ -7,6 +13,7 @@
 
   home.packages = with pkgs; [
     calibre
+    deadbeef
     ffmpeg-full
     jetbrains.idea-community-bin
     krita
