@@ -12,6 +12,7 @@
     ./papermc.nix
     ./calibre.nix
     ./jellyfin.nix
+    ./zrepl.nix
     ./users.nix
   ];
 
