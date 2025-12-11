@@ -1,9 +1,10 @@
 { config, lib, pkgs, inputs, ... }:
 
 let
-  deadbeef = pkgs.deadbeef.override {
-    wavpackSupport = true;
+  oldpkgs = import inputs.nixpkgs-oldstable {
+    system = pkgs.stdenv.hostPlatform.system;
   };
+  deadbeef = oldpkgs.deadbeef;
 in
 
 {

@@ -204,6 +204,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-oldstable": {
+      "locked": {
+        "lastModified": 1765363881,
+        "narHash": "sha256-3C3xWn8/2Zzr7sxVBmpc1H1QfxjNfta5IMFe3O9ZEPw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d2b1213bf5ec5e62d96b003ab4b5cbc42abfc0d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1765311797,
@@ -228,11 +244,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765467058,
-        "narHash": "sha256-T78HZfRw8pdaAmKapBolfZg8d4N1ysySXWqrWx8/Ehg=",
+        "lastModified": 1765472076,
+        "narHash": "sha256-LB9ryzZ8VP/qlTwXXi5qqgj/FuTKGEwBvKxfBhRc1iM=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "9dcc531de6759b70f59b3ed761c8ed7d742e16ca",
+        "rev": "3a757b167cc4d0689cac8114a608c0c8c7cb7b38",
         "type": "github"
       },
       "original": {
@@ -249,6 +265,7 @@
         "home-manager": "home-manager",
         "lix-module": "lix-module",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-oldstable": "nixpkgs-oldstable",
         "nur": "nur"
       }
     },

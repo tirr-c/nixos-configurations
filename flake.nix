@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs-oldstable.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
