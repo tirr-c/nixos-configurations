@@ -54,6 +54,17 @@ in
     fileWidgetCommand = defaultCommand;
   };
 
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      light = false;
+      line-numbers = true;
+      navigate = true;
+      side-by-side = true;
+    };
+  };
+
   programs.git = {
     enable = true;
     ignores = [
@@ -67,18 +78,10 @@ in
       key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       signByDefault = true;
     };
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
       merge.conflictStyle = "diff3";
       gpg.format = "ssh";
-    };
-
-    delta.enable = true;
-    delta.options = {
-      light = false;
-      line-numbers = true;
-      navigate = true;
-      side-by-side = true;
     };
   };
 
