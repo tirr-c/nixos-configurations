@@ -53,6 +53,15 @@
     "ko_KR.UTF-8/UTF-8"
     "ja_JP.UTF-8/UTF-8"
   ];
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = with pkgs; [
+      fcitx5-hangul
+      fcitx5-mozc
+    ];
+  };
 
   services.keyd = {
     enable = true;
