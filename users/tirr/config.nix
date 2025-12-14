@@ -75,13 +75,13 @@ in
       ".direnv"
     ];
     signing = {
+      format = "ssh";
       key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       signByDefault = true;
     };
     settings = {
       init.defaultBranch = "main";
       merge.conflictStyle = "diff3";
-      gpg.format = "ssh";
     };
   };
 
