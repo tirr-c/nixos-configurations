@@ -141,6 +141,19 @@
     motherboard = "amd";
   };
 
+  programs.steam = {
+    gamescopeSession = {
+      args = [
+        "--backend" "wayland"
+        "-W" "3840"
+        "-H" "2160"
+        "-r" "120"
+        "--adaptive-sync"
+        "-f"
+      ];
+    };
+  };
+
   programs.zsh.enable = true;
 
   programs.nix-ld = {
