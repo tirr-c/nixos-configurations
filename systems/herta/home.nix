@@ -15,7 +15,7 @@ in
     calibre
     oldpkgs.deadbeef
     ffmpeg-full
-    jetbrains.idea-community-bin
+    jetbrains.idea-oss
     krita
     libjxl-dev
     loupe
