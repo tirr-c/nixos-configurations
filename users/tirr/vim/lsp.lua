@@ -22,6 +22,8 @@ vim.lsp.config('rust_analyzer', {
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('nixd')
 vim.lsp.enable('pyright')
+vim.lsp.enable('tailwindcss')
+vim.lsp.enable('ts_ls')
 
 vim.lsp.inlay_hint.enable()
 vim.cmd('set completeopt+=menuone,noselect,popup')
