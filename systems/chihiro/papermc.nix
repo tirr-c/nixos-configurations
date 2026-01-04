@@ -8,11 +8,11 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: {
-        version = "1.21.10-115";
-        hash = "sha256-1fR/Y5OqZHdZ8QHwIjH6ggDlvM02CBo+6Lal/ZZzkFc=";
+        version = "1.21.11-74";
+        hash = "sha256-bW+MrYw7h39tnOB8hTtUjNHJwZFVqMTjb4gOGkK5df8=";
 
         src = pkgs.fetchurl {
-          url = "https://fill-data.papermc.io/v1/objects/d5f47f6393aa647759f101f02231fa8200e5bccd36081a3ee8b6a5fd96739057/paper-1.21.10-115.jar";
+          url = "https://fill-data.papermc.io/v1/objects/6d6f8cad8c3b877f6d9ce07c853b548cd1c9c19155a8c4e36f880e1a42b975ff/paper-1.21.11-74.jar";
           inherit (finalAttrs) hash;
         };
       });
