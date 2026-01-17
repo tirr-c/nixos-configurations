@@ -6,6 +6,7 @@
     forceImportRoot = false;
     devNodes = "/dev/disk/by-id";
     extraPools = ["veritas"];
+    requestEncryptionCredentials = [];
   };
 
   fileSystems."/" = {
