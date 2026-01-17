@@ -12,6 +12,7 @@
     ./papermc.nix
     ./calibre.nix
     ./jellyfin.nix
+    ./outline.nix
     ./zrepl.nix
     ./users.nix
   ];
@@ -50,6 +51,7 @@
     interfaces.enp4s0 = {
       allowedTCPPorts = [
         8080
+        56029
       ];
     };
   };
