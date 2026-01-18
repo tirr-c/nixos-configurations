@@ -69,6 +69,7 @@
           } // commonSpecialArgs;
 
           modules = [
+            ./modules/nocodb
             ./systems/chihiro/default.nix
           ];
         };
