@@ -1,5 +1,9 @@
 { pkgs, lib, inputs, ... }:
 
+let
+  nocodb-bin = pkgs.callPackage ../../packages/nocodb-bin {};
+in
+
 {
   imports = [
     ../profiles/base.nix
@@ -123,6 +127,12 @@
       proxy-headers = "xforwarded";
       proxy-trusted-addresses = "127.0.0.0/8,172.30.1.68";
     };
+  };
+
+  services.nocodb = {
+    enable = true;
+    package = nocodb-bin;
+    port = 59708;
   };
 
   security.sudo.wheelNeedsPassword = false;
