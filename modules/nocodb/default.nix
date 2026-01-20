@@ -115,6 +115,11 @@ in
       type = types.enum ["memory" "redis"];
       default = "redis";
     };
+
+    allowLocalHooks = lib.mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -201,6 +206,10 @@ in
 
           (lib.mkIf (cfg.cacheKind == "redis") {
             NC_REDIS_URL = localRedisUrl;
+          })
+
+          (lib.mkIf cfg.allowLocalHooks {
+            NC_ALLOW_LOCAL_HOOKS = "true";
           })
         ];
 

@@ -133,6 +133,7 @@ in
     enable = true;
     package = nocodb-bin;
     port = 59708;
+    allowLocalHooks = true;
   };
 
   security.sudo.wheelNeedsPassword = false;
