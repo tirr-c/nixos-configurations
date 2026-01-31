@@ -2,6 +2,7 @@
 
 let
   nocodb-bin = pkgs.callPackage ../../packages/nocodb-bin {};
+  nocodb-webhooks = pkgs.callPackage ./nocodb-webhooks/app.nix {};
 in
 
 {
@@ -19,6 +20,8 @@ in
     ./outline.nix
     ./zrepl.nix
     ./users.nix
+
+    ./nocodb-webhooks
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -134,6 +137,18 @@ in
     package = nocodb-bin;
     port = 59708;
     allowLocalHooks = true;
+  };
+
+  services.nocodb-webhooks = {
+    enable = true;
+    package = nocodb-webhooks;
+    serveAddress = "tcp:0.0.0.0:54443";
+    kakaoApiKeyPath = "/etc/nixos/secrets/kakao-api-key";
+    nocodb = {
+      base = "pcvqhb4nukwy4f6";
+      thumbnailField = "clk6rj1i44c3yjp";
+      apiTokenPath = "/etc/nixos/secrets/nc-api-token";
+    };
   };
 
   security.sudo.wheelNeedsPassword = false;
