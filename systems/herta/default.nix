@@ -17,6 +17,7 @@
   nixpkgs.overlays = with inputs.self.overlays; [
     libjxl-dev
     p7zip-default-unfree
+    libdispatch-disable-swift
   ];
 
   nixpkgs.config.allowUnfree = true;

@@ -1,10 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
-
-let
-  oldpkgs = import inputs.nixpkgs-oldstable {
-    system = pkgs.stdenv.hostPlatform.system;
-  };
-in
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -13,7 +7,7 @@ in
 
   home.packages = with pkgs; [
     calibre
-    oldpkgs.deadbeef
+    deadbeef
     ffmpeg-full
     jetbrains.idea-oss
     krita
