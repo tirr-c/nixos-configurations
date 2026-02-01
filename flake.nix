@@ -1,12 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
-    nixpkgs-oldstable.url = "github:nixos/nixpkgs?ref=nixos-25.05";
-    flake-utils.url = "github:numtide/flake-utils";
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,9 +24,8 @@
       lib =
         let
           usersLib = import ./users/lib.nix inputs;
-          devShellsLib = import ./devShells/lib.nix inputs;
         in
-        usersLib // devShellsLib;
+        usersLib;
 
       overlays = import ./overlays inputs;
 
@@ -74,10 +67,7 @@
           ];
         };
       };
-
-      devShells = import ./devShells/default.nix inputs;
     in
 
-    { inherit nixosConfigurations lib overlays; }
-    // devShells;
+    { inherit nixosConfigurations lib overlays; };
 }
