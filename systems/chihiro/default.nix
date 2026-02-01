@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   nocodb-bin = pkgs.callPackage ../../packages/nocodb-bin {};
@@ -20,6 +20,7 @@ in
     ./outline.nix
     ./zrepl.nix
     ./users.nix
+    ./agenix.nix
 
     ./nocodb-webhooks
   ];
@@ -121,7 +122,7 @@ in
 
   services.keycloak = {
     enable = true;
-    database.passwordFile = "/etc/nixos/secrets/keycloak-db";
+    database.passwordFile = config.age.secrets.keycloak-db.path;
     settings = {
       hostname = "https://keycloak.veritas.tirr.network";
       http-enabled = true;
@@ -143,11 +144,11 @@ in
     enable = true;
     package = nocodb-webhooks;
     serveAddress = "tcp:0.0.0.0:54443";
-    kakaoApiKeyPath = "/etc/nixos/secrets/kakao-api-key";
+    kakaoApiKeyPath = config.age.secrets.kakao-api-key.path;
     nocodb = {
       base = "pcvqhb4nukwy4f6";
       thumbnailField = "clk6rj1i44c3yjp";
-      apiTokenPath = "/etc/nixos/secrets/nc-api-token";
+      apiTokenPath = config.age.secrets.nc-api-token.path;
     };
   };
 

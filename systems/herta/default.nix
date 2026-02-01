@@ -12,6 +12,7 @@
     ./disks.nix
     ./users.nix
     ./vm.nix
+    ./agenix.nix
   ];
 
   nixpkgs.overlays = with inputs.self.overlays; [

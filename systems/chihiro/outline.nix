@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   services.outline = {
@@ -10,7 +10,7 @@
 
     oidcAuthentication = {
       clientId = "outline";
-      clientSecretFile = "/etc/nixos/secrets/outline-oidc-secret";
+      clientSecretFile = config.age.secrets.outline-oidc-secret.path;
       authUrl = "https://keycloak.veritas.tirr.network/realms/master/protocol/openid-connect/auth";
       tokenUrl = "https://keycloak.veritas.tirr.network/realms/master/protocol/openid-connect/token";
       userinfoUrl = "https://keycloak.veritas.tirr.network/realms/master/protocol/openid-connect/userinfo";

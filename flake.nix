@@ -17,9 +17,18 @@
       url = "github:ezKEa/aagl-gtk-on-nix?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+    };
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, nur, ... }:
+  outputs = inputs@{ self, nixpkgs, nur, agenix-rekey, ... }:
     let
       lib =
         let
@@ -35,16 +44,6 @@
       };
 
       nixosConfigurations = {
-        chise = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            host = "chise";
-          } // commonSpecialArgs;
-
-          modules = [
-            ./systems/chise/default.nix
-          ];
-        };
-
         herta = nixpkgs.lib.nixosSystem {
           specialArgs = {
             host = "herta";
@@ -69,5 +68,13 @@
       };
     in
 
-    { inherit nixosConfigurations lib overlays; };
+    {
+      inherit nixosConfigurations lib overlays;
+
+      agenix-rekey = agenix-rekey.configure {
+        userFlake = self;
+        nixosConfigurations = self.nixosConfigurations;
+        agePackage = p: p.age;
+      };
+    };
 }
