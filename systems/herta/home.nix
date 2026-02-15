@@ -9,7 +9,7 @@
     calibre
     deadbeef
     ffmpeg-full
-    jetbrains.idea-oss
+    jetbrains.idea
     krita
     libjxl-dev
     loupe
