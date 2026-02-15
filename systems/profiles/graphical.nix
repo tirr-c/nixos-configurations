@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./evdi.nix
-  ];
-
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

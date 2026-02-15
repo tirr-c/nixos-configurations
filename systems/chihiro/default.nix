@@ -12,6 +12,7 @@ in
     ../profiles/nvidia.nix
     ../profiles/gaming.nix
     ../profiles/fonts.nix
+    ../profiles/sunshine.nix
     ./hardware-configuration.nix
     ./disks.nix
     ./papermc.nix
@@ -26,9 +27,6 @@ in
   ];
 
   nixpkgs.config.allowUnfree = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
-  boot.kernelModules = ["ntsync"];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -7,6 +7,7 @@
     ../profiles/gaming.nix
     ../profiles/fonts.nix
     ../profiles/obs.nix
+    ../profiles/sunshine.nix
     ./hardware-configuration.nix
     ./waydroid.nix
     ./disks.nix
@@ -23,8 +24,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = ["ntsync"];
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -38,6 +38,11 @@
   hardware.enableRedistributableFirmware = true;
 
   hardware.bluetooth.enable = true;
+
+  hardware.display.outputs."DP-3" = {
+    mode = "e";
+    edid = "acer-xv273k-dp1";
+  };
 
   systemd.network = {
     enable = true;
@@ -135,11 +140,6 @@
   };
 
   services.tailscale.enable = true;
-
-  services.sunshine = {
-    enable = true;
-    capSysAdmin = true;
-  };
 
   services.hardware.openrgb = {
     enable = true;

@@ -18,6 +18,9 @@
     ];
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelModules = ["ntsync"];
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
