@@ -6,10 +6,6 @@
     p7zip = prev.p7zip.override { enableUnfree = true; };
   });
 
-  mbedtls = (final: prev: {
-    mbedtls_2 = final.mbedtls;
-  });
-
   libdispatch-disable-swift = (final: prev: {
     swift-corelibs-libdispatch = prev.swift-corelibs-libdispatch.override { useSwift = false; };
   });
