@@ -34,6 +34,11 @@ in
 
   boot.initrd.kernelModules = lib.mkAfter ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
 
+  hardware.display.outputs."DP-3" = {
+    mode = "e";
+    edid = "acer-xv273k-dp1";
+  };
+
   networking.useNetworkd = true;
   networking.hostId = "17648f8c";
   systemd.network = {
