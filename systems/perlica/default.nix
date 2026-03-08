@@ -20,7 +20,7 @@
 
   systemd.network = {
     enable = true;
-    networks = {
+    networks."50-onboard" = {
       matchConfig.Name = "eth0";
       DHCP = "yes";
     };

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   imports = [
@@ -7,4 +7,6 @@
 
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
+
+  programs.awscli.enable = lib.mkForce false;
 }
