@@ -51,7 +51,7 @@
 
           modules = [
             nur.modules.nixos.default
-            ./systems/herta/default.nix
+            ./systems/herta
           ];
         };
 
@@ -62,7 +62,17 @@
 
           modules = [
             ./modules/nocodb
-            ./systems/chihiro/default.nix
+            ./systems/chihiro
+          ];
+        };
+
+        perlica = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            host = "perlica";
+          } // commonSpecialArgs;
+
+          modules = [
+            ./systems/perlica
           ];
         };
       };
