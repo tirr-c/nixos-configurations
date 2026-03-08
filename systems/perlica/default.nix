@@ -5,7 +5,9 @@
     ../profiles/base.nix
     ./hardware-configuration.nix
     ./disks.nix
+    ./networking.nix
     ./users.nix
+    ./agenix.nix
   ];
 
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
@@ -15,16 +17,6 @@
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
   hardware.enableRedistributableFirmware = true;
-
-  networking.useNetworkd = true;
-
-  systemd.network = {
-    enable = true;
-    networks."50-onboard" = {
-      matchConfig.Name = "eth0";
-      DHCP = "yes";
-    };
-  };
 
   time.timeZone = "Asia/Seoul";
 
@@ -38,6 +30,7 @@
 
   services.openssh = {
     enable = true;
+    openFirewall = true;
     settings = {
       KbdInteractiveAuthentication = false;
     };
