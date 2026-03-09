@@ -32,6 +32,11 @@ in
         linkConfig.RequiredForOnline = "no";
       };
 
+      "20-wlan-unmanaged" = {
+        matchConfig.Name = "wlan0";
+        linkConfig.Unmanaged = "yes";
+      };
+
       "50-bridge" = {
         matchConfig.Name = bridgeName;
         DHCP = "no";
@@ -65,22 +70,26 @@ in
 
     radios.${wlanDevName} = {
       band = "2g";
+      channel = 9;
       countryCode = "KR";
 
       networks.${wlanDevName} = {
         ssid = "Lunaere";
         authentication = {
-          mode = "wpa3-sae-transition";
-
+          mode = "wpa2-sha1";
           wpaPasswordFile = config.age.secrets.wpaPassword.path;
-          saePasswordsFile = config.age.secrets.saePasswords.path;
         };
         settings = {
           bridge = bridgeName;
+          # brcmfmac doesn't support MFP (https://github.com/raspberrypi/linux/issues/3619)
+          ieee80211w = "0";
         };
       };
     };
   };
+
+  systemd.services.hostapd.requires = ["network-online.target"];
+  systemd.services.hostapd.after = ["network-online.target"];
 
   services.unbound = {
     enable = true;
@@ -122,6 +131,9 @@ in
     };
   };
 
+  systemd.services.unbound.requires = ["network-online.target"];
+  systemd.services.unbound.after = ["network-online.target"];
+
   services.dnsmasq = {
     enable = true;
     resolveLocalQueries = false;
@@ -149,6 +161,9 @@ in
       ];
     };
   };
+
+  systemd.services.dnsmasq.requires = ["network-online.target"];
+  systemd.services.dnsmasq.after = ["network-online.target"];
 
   networking.nftables.enable = true;
 
@@ -182,5 +197,6 @@ in
     enable = true;
 
     trustedInterfaces = [bridgeName];
+    logRefusedConnections = false;
   };
 }
