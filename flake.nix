@@ -26,9 +26,10 @@
       url = "github:oddlama/agenix-rekey";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = inputs@{ self, nixpkgs, nur, agenix-rekey, ... }:
+  outputs = inputs@{ self, nixpkgs, nur, agenix-rekey, nixos-hardware, ... }:
     let
       lib =
         let
@@ -72,6 +73,7 @@
           } // commonSpecialArgs;
 
           modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
             ./systems/perlica
           ];
         };
