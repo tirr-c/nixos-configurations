@@ -90,7 +90,7 @@
   programs.ssh.matchBlocks = {
     lunaere = {
       host = "lunaere-tirrsmb";
-      hostname = "10.128.0.1";
+      hostname = "10.48.0.2";
       user = "tirrsmb";
       identityFile = "${config.home.homeDirectory}/.ssh/tirrsmb";
     };
@@ -105,7 +105,7 @@
   xdg.configFile."rclone/lunaere.conf".text = ''
 [lunaere]
 type = sftp
-host = 10.128.0.1
+host = 10.48.0.2
 user = tirrsmb
 key_file = ${config.home.homeDirectory}/.ssh/tirrsmb
   '';
