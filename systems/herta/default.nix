@@ -47,9 +47,10 @@
   systemd.network = {
     enable = true;
     networks = {
-      "99-ethernet" = {
-        matchConfig.Name = "eth*";
+      "50-local" = {
+        matchConfig.name = "eno1";
         DHCP = "yes";
+        networkConfig.UseDomains = "yes";
       };
     };
   };
