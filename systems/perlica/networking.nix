@@ -60,8 +60,6 @@ in
         name = uplinkDevName;
         dns = ["127.0.0.1"];
 
-        linkConfig.RequiredForOnline = "no";
-
         dhcpV4Config = {
           UseDNS = "no";
           SendRelease = "no";
@@ -96,8 +94,8 @@ in
     };
   };
 
-  systemd.services.hostapd.requires = ["network-online.target"];
-  systemd.services.hostapd.after = ["network-online.target"];
+  systemd.services.hostapd.wants = ["systemd-networkd-wait-online@${bridgeName}.service"];
+  systemd.services.hostapd.after = ["systemd-networkd-wait-online@${bridgeName}.service"];
 
   services.unbound = {
     enable = true;
@@ -139,8 +137,8 @@ in
     };
   };
 
-  systemd.services.unbound.requires = ["network-online.target"];
-  systemd.services.unbound.after = ["network-online.target"];
+  systemd.services.unbound.wants = ["systemd-networkd-wait-online@${bridgeName}.service"];
+  systemd.services.unbound.after = ["systemd-networkd-wait-online@${bridgeName}.service"];
 
   services.dnsmasq = {
     enable = true;
@@ -175,8 +173,8 @@ in
     };
   };
 
-  systemd.services.dnsmasq.requires = ["network-online.target"];
-  systemd.services.dnsmasq.after = ["network-online.target"];
+  systemd.services.dnsmasq.wants = ["systemd-networkd-wait-online@${bridgeName}.service"];
+  systemd.services.dnsmasq.after = ["systemd-networkd-wait-online@${bridgeName}.service"];
 
   networking.nftables.enable = true;
 
