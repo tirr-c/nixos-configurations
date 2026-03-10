@@ -159,7 +159,7 @@ in
       dhcp-range = "10.48.0.100,10.48.0.254";
 
       address = [
-        "/${config.networking.hostName}/10.48.0.1"
+        "/${config.networking.hostName}.${localDomain}/10.48.0.1"
       ];
       dhcp-host = [
         "d8:5e:d3:8e:79:6a,10.48.0.2,lunaere"
