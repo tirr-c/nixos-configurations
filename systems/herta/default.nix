@@ -30,10 +30,19 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;
 
+  systemd.network.enable = true;
   networking.useNetworkd = true;
   networking.wireless.iwd.enable = true;
 
-  networking.interfaces.eno1.wakeOnLan.enable = true;
+  networking.interfaces.eno1 = {
+    useDHCP = true;
+    wakeOnLan.enable = true;
+  };
+
+  systemd.network.networks."40-eno1" = {
+    name = "eno1";
+    networkConfig.UseDomains = "yes";
+  };
 
   hardware.enableRedistributableFirmware = true;
 
@@ -42,17 +51,6 @@
   hardware.display.outputs."DP-3" = {
     mode = "e";
     edid = "acer-xv273k-dp1";
-  };
-
-  systemd.network = {
-    enable = true;
-    networks = {
-      "50-local" = {
-        matchConfig.name = "eno1";
-        DHCP = "yes";
-        networkConfig.UseDomains = "yes";
-      };
-    };
   };
 
   time.timeZone = "Asia/Seoul";

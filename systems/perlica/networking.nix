@@ -10,20 +10,25 @@ in
 
 {
   networking.useNetworkd = true;
+  systemd.network.enable = true;
+
+  networking.bridges.${bridgeName} = {
+    interfaces = ["end0"];
+  };
+  networking.interfaces.${bridgeName} = {
+    useDHCP = false;
+    ipv4.addresses = [
+      {
+        address = "10.48.0.1";
+        prefixLength = 24;
+      }
+    ];
+  };
+  networking.interfaces.${uplinkDevName} = {
+    useDHCP = true;
+  };
 
   systemd.network = {
-    enable = true;
-
-    netdevs = {
-      "10-${bridgeName}" = {
-        enable = true;
-        netdevConfig = {
-          Name = bridgeName;
-          Kind = "bridge";
-        };
-      };
-    };
-
     links = {
       "10-${uplinkDevName}" = {
         enable = true;
@@ -33,32 +38,29 @@ in
     };
 
     networks = {
-      "20-onboard-bridge" = {
-        matchConfig.Name = "end0";
-        bridge = [bridgeName];
-
+      "40-end0" = {
+        name = "end0";
         linkConfig.RequiredForOnline = "no";
       };
 
-      "20-wlan-unmanaged" = {
-        matchConfig.Name = "wlan0";
+      "40-wlan0-unmanaged" = {
+        name = "wlan0";
         linkConfig.Unmanaged = "yes";
       };
 
-      "50-bridge" = {
-        matchConfig.Name = bridgeName;
-        DHCP = "no";
-        address = ["10.48.0.1/24"];
+      "40-${bridgeName}" = {
+        name = bridgeName;
         dns = ["127.0.0.1"];
         domains = ["~${localDomain}"];
 
         linkConfig.RequiredForOnline = "yes";
       };
 
-      "50-uplink" = {
-        matchConfig.Name = uplinkDevName;
-        DHCP = "yes";
+      "40-${uplinkDevName}" = {
+        name = uplinkDevName;
         dns = ["127.0.0.1"];
+
+        linkConfig.RequiredForOnline = "no";
 
         dhcpV4Config = {
           UseDNS = "no";
