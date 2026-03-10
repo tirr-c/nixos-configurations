@@ -3,7 +3,7 @@
 let
   bridgeName = "br-lan";
   wlanDevName = "wlan0";
-  uplinkDevName = "enp1s0u1c2";
+  uplinkDevName = "uplink";
   publicIp = "222.112.63.131";
   localDomain = "tirr.local";
 in
@@ -21,6 +21,14 @@ in
           Name = bridgeName;
           Kind = "bridge";
         };
+      };
+    };
+
+    links = {
+      "10-${uplinkDevName}" = {
+        enable = true;
+        matchConfig.MACAddress = "c8:a3:62:e4:3e:bf";
+        linkConfig.Name = uplinkDevName;
       };
     };
 
@@ -66,23 +74,21 @@ in
   };
 
   services.hostapd = {
-    enable = true;
+    # FIXME: Re-enable when I have better wireless card
+    enable = false;
 
     radios.${wlanDevName} = {
-      band = "2g";
-      channel = 9;
+      band = "5g";
       countryCode = "KR";
 
       networks.${wlanDevName} = {
         ssid = "Lunaere";
         authentication = {
-          mode = "wpa2-sha1";
-          wpaPasswordFile = config.age.secrets.wpaPassword.path;
+          mode = "wpa3-sae";
+          saePasswordsFile = config.age.secrets.saePasswords.path;
         };
         settings = {
           bridge = bridgeName;
-          # brcmfmac doesn't support MFP (https://github.com/raspberrypi/linux/issues/3619)
-          ieee80211w = "0";
         };
       };
     };
@@ -152,11 +158,16 @@ in
       expand-hosts = true;
       dhcp-range = "10.48.0.100,10.48.0.254";
 
+      address = [
+        "/${config.networking.hostName}/10.48.0.1"
+      ];
       dhcp-host = [
         "d8:5e:d3:8e:79:6a,10.48.0.2,lunaere"
       ];
 
       dhcp-option = [
+        "3,0.0.0.0"
+        "6,0.0.0.0"
         "option:domain-search,${localDomain}"
       ];
     };
