@@ -98,6 +98,16 @@
             ./systems/xaihi
           ];
         };
+
+        yvonne = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            host = "yvonne";
+          } // commonSpecialArgs;
+
+          modules = [
+            ./systems/yvonne
+          ];
+        };
       };
     in
 
