@@ -87,6 +87,17 @@
             ./systems/plachta
           ];
         };
+
+        xaihi = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            host = "xaihi";
+          } // commonSpecialArgs;
+
+          modules = [
+            ./modules/out-of-your-element
+            ./systems/xaihi
+          ];
+        };
       };
     in
 
