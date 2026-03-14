@@ -163,6 +163,8 @@ in
       ];
       dhcp-host = [
         "d8:5e:d3:8e:79:6a,10.48.0.2,lunaere"
+        "bc:24:11:5f:7a:bd,10.48.0.3,plachta"
+        "bc:24:11:47:43:7b,10.48.0.4,xaihi"
       ];
 
       dhcp-option = [
@@ -186,19 +188,19 @@ in
       {
         sourcePort = 80;
         proto = "tcp";
-        destination = "10.48.0.2:80";
+        destination = "10.48.0.4:80";
         loopbackIPs = [publicIp];
       }
       {
         sourcePort = 443;
         proto = "tcp";
-        destination = "10.48.0.2:443";
+        destination = "10.48.0.4:443";
         loopbackIPs = [publicIp];
       }
       {
         sourcePort = 8448;
         proto = "tcp";
-        destination = "10.48.0.2:8448";
+        destination = "10.48.0.4:8448";
         loopbackIPs = [publicIp];
       }
     ];
