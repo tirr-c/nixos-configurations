@@ -77,6 +77,16 @@
             ./systems/perlica
           ];
         };
+
+        plachta = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            host = "plachta";
+          } // commonSpecialArgs;
+
+          modules = [
+            ./systems/plachta
+          ];
+        };
       };
     in
 
