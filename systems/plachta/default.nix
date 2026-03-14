@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./disks.nix
     ./users.nix
+    ./zrepl.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
