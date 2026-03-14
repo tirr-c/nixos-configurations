@@ -102,24 +102,24 @@
     };
   };
 
-  xdg.configFile."rclone/lunaere.conf".text = ''
-[lunaere]
+  xdg.configFile."rclone/plachta.conf".text = ''
+[plachta]
 type = sftp
-host = 10.48.0.2
+host = plachta.tirr.local
 user = tirrsmb
 key_file = ${config.home.homeDirectory}/.ssh/tirrsmb
   '';
 
-  systemd.user.services.rclone-lunaere = {
+  systemd.user.services.rclone-plachta = {
     Unit = {
-      Description = "Mount lunaere.tirr.network";
+      Description = "Mount plachta.tirr.local";
       After = ["network-online.target"];
     };
 
     Service = {
       Type = "notify";
       ExecStartPre = "/run/current-system/sw/bin/mkdir -p %h/lunaere-ssh";
-      ExecStart = "${pkgs.rclone}/bin/rclone --config=%h/.config/rclone/lunaere.conf --vfs-cache-mode writes --ignore-checksum mount \"lunaere:/srv/data\" \"lunaere-ssh\"";
+      ExecStart = "${pkgs.rclone}/bin/rclone --config=%h/.config/rclone/plachta.conf --vfs-cache-mode writes --ignore-checksum mount \"plachta:/srv/data\" \"lunaere-ssh\"";
       ExecStop="/run/wrappers/bin/fusermount -u %h/lunaere-ssh/%i";
       Environment = ["PATH=/run/wrappers/bin:$PATH"];
     };
