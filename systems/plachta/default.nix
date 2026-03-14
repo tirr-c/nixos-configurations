@@ -5,6 +5,7 @@
     ../profiles/base.nix
     ./hardware-configuration.nix
     ./disks.nix
+    ./users.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -36,30 +37,20 @@
     "ja_JP.UTF-8/UTF-8"
   ];
 
-  users.users.tirr = {
-    isNormalUser = true;
-    description = "Wonwoo Choi";
-    extraGroups = ["wheel"];
-  };
-  users.users.tirrsmb = {
-    isSystemUser = true;
-    group = "users";
-    home = "/srv/data/home";
-    shell = pkgs.bashInteractive;
-    uid = 1001;
-
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxX2SLoEr3NTqiMf+nWmlprqZa6lFfrOSiGhSXdk0+N"
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
     vim
     curl
     git
   ];
 
-  services.openssh.enable = true;
+  services.tailscale.enable = true;
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      KbdInteractiveAuthentication = false;
+    };
+  };
 
   services.qemuGuest.enable = true;
 
