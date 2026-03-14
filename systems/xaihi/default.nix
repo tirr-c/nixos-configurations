@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./disks.nix
     ./matrix.nix
+    ./users.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -35,12 +36,6 @@
     "ko_KR.UTF-8/UTF-8"
     "ja_JP.UTF-8/UTF-8"
   ];
-
-  users.users.tirr = {
-    isNormalUser = true;
-    description = "Wonwoo Choi";
-    extraGroups = ["wheel"];
-  };
 
   environment.systemPackages = with pkgs; [
     vim
