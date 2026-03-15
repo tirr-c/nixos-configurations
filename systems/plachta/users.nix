@@ -19,4 +19,19 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxX2SLoEr3NTqiMf+nWmlprqZa6lFfrOSiGhSXdk0+N"
     ];
   };
+
+  users.users.mitir = {
+    isSystemUser = true;
+    group = "mitir";
+    home = "/srv/data/mitir";
+  };
+  users.groups.mitir = {};
+
+  users.users.continuwuity = {
+    isSystemUser = true;
+    group = "continuwuity";
+    home = "/srv/data/conduwuit";
+    shell = pkgs.bashInteractive;
+  };
+  users.groups.continuwuity = {};
 }
