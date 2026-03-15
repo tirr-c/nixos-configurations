@@ -58,6 +58,8 @@
 
   services.qemuGuest.enable = true;
 
+  programs.zsh.enable = true;
+
   security.sudo = {
     enable = true;
     wheelNeedsPassword = false;

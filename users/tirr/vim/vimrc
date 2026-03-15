@@ -85,5 +85,3 @@ if has('nvim')
     autocmd TermClose *sh,*cmd.exe if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
   augroup end
 endif
-
-colo tirr
