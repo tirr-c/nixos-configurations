@@ -2,6 +2,8 @@
 
 let
   nodeList = [
+    "perlica.tirr.local:9100"
+    "lunaere.tirr.local:9100"
     "plachta.tirr.local:9100"
     "xaihi.tirr.local:9100"
   ];
@@ -16,6 +18,12 @@ in
         job_name = "node";
         static_configs = [
           { targets = nodeList; }
+        ];
+      }
+      {
+        job_name = "zrepl";
+        static_configs = [
+          { targets = ["plachta.tirr.local:9811"]; }
         ];
       }
     ];

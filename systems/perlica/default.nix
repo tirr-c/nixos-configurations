@@ -36,6 +36,12 @@
     };
   };
 
+  services.prometheus.exporters.node = {
+    enable = true;
+    openFirewall = false;
+    enabledCollectors = ["systemd" "ethtool"];
+  };
+
   programs.zsh.enable = true;
 
   security.sudo = {
