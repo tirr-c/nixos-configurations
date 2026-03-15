@@ -14,6 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;
+  boot.kernelParams = ["console=ttyS0,115200n8"];
 
   boot.kernelPackages = pkgs.linuxPackages_6_18;
 
