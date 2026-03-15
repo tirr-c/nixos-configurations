@@ -4,6 +4,14 @@
   services.zrepl = {
     enable = true;
     settings = {
+      global.monitoring = [
+        {
+          type = "prometheus";
+          listen = ":9811";
+          listen_freebind = true;
+        }
+      ];
+
       jobs = [
         {
           type = "push";

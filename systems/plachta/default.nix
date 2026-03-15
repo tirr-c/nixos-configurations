@@ -55,6 +55,12 @@
 
   services.qemuGuest.enable = true;
 
+  services.prometheus.exporters.node = {
+    enable = true;
+    openFirewall = true;
+    enabledCollectors = ["systemd"];
+  };
+
   security.sudo = {
     enable = true;
     wheelNeedsPassword = false;

@@ -7,6 +7,7 @@
     ./disks.nix
     ./matrix.nix
     ./users.nix
+    ./prometheus.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
