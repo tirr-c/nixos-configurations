@@ -34,6 +34,9 @@
     };
   };
 
+  # ComfyUI
+  networking.firewall.allowedTCPPorts = [8188];
+
   time.timeZone = "Asia/Seoul";
 
   i18n.defaultLocale = "en_US.UTF-8";
