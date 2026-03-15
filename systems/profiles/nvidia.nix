@@ -11,6 +11,11 @@ let
   };
 in
 {
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   # NVIDIA driver
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {

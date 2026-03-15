@@ -10,6 +10,7 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.cudaSupport = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -47,6 +48,7 @@
     vim
     curl
     git
+    uv
   ];
 
   services.openssh = {
@@ -58,6 +60,7 @@
 
   services.qemuGuest.enable = true;
 
+  programs.nix-ld.enable = true;
   programs.zsh.enable = true;
 
   security.sudo = {
