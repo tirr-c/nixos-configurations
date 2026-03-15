@@ -6,7 +6,11 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-277772ef-45b7-4cb1-8caa-4e86bbc6852e".device = "/dev/disk/by-uuid/277772ef-45b7-4cb1-8caa-4e86bbc6852e";
+  boot.initrd.luks.devices."luks-277772ef-45b7-4cb1-8caa-4e86bbc6852e" = {
+    device = "/dev/disk/by-uuid/277772ef-45b7-4cb1-8caa-4e86bbc6852e";
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/0D48-0DE4";
