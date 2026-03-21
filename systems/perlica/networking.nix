@@ -1,10 +1,10 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 let
   bridgeName = "br-lan";
   wlanDevName = "wlan0";
-  uplinkDevName = "uplink";
-  publicIp = "222.112.63.131";
+  uplinkDevName = "enp1s0";
+  publicIp = "210.121.177.250";
   localDomain = "tirr.local";
 in
 
@@ -29,14 +29,6 @@ in
   };
 
   systemd.network = {
-    links = {
-      "10-${uplinkDevName}" = {
-        enable = true;
-        matchConfig.MACAddress = "c8:a3:62:e4:3e:bf";
-        linkConfig.Name = uplinkDevName;
-      };
-    };
-
     networks = {
       "40-end0" = {
         name = "end0";
@@ -74,18 +66,22 @@ in
   };
 
   services.hostapd = {
-    # FIXME: Re-enable when I have better wireless card
-    enable = false;
+    enable = true;
 
     radios.${wlanDevName} = {
-      band = "5g";
+      band = "2g";
       countryCode = "KR";
+
+      wifi4.capabilities = lib.mkForce [
+        "HT40"
+        "SHORT-GI-20"
+      ];
 
       networks.${wlanDevName} = {
         ssid = "Lunaere";
         authentication = {
-          mode = "wpa3-sae";
-          saePasswordsFile = config.age.secrets.saePasswords.path;
+          mode = "wpa2-sha1";
+          wpaPasswordFile = config.age.secrets.wpaPassword.path;
         };
         settings = {
           bridge = bridgeName;
@@ -93,6 +89,11 @@ in
       };
     };
   };
+
+  boot.kernelModules = ["brcmfmac"];
+  boot.extraModprobeConfig = lib.mkAfter ''
+    options brcmfmac roamoff=1 feature_disable=0x82000
+  '';
 
   systemd.services.hostapd.wants = ["systemd-networkd-wait-online@${bridgeName}.service"];
   systemd.services.hostapd.after = ["systemd-networkd-wait-online@${bridgeName}.service"];
@@ -160,6 +161,7 @@ in
 
       address = [
         "/${config.networking.hostName}.${localDomain}/10.48.0.1"
+        "/lunaere.${localDomain}/10.48.0.2"
       ];
       dhcp-host = [
         "d8:5e:d3:8e:79:6a,10.48.0.2,lunaere"
