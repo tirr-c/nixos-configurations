@@ -21,6 +21,11 @@ in
       type = types.port;
       default = 53972;
     };
+
+    openFirewall = lib.mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -39,5 +44,7 @@ in
         DynamicUser = true;
       };
     };
+
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.openFirewall [cfg.port];
   };
 }

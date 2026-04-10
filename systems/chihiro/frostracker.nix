@@ -17,4 +17,6 @@ in
       reverse_proxy localhost:${builtins.toString port}
     '';
   };
+
+  networking.firewall.allowedTCPPorts = [3972];
 }
