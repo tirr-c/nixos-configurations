@@ -123,7 +123,7 @@ in
       in
       lib.mkMerge [
         (lib.mkAfter "colo tirr\n")
-        (lib.mkAfter ((builtins.concatStringsSep "" fileContents) + "\n"))
+        (lib.mkAfter ((builtins.concatStringsSep "\n" fileContents) + "\n"))
       ];
   };
 
