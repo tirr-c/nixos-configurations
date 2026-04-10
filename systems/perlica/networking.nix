@@ -90,8 +90,9 @@ in
     };
   };
 
-  boot.kernelModules = ["brcmfmac"];
+  boot.kernelModules = ["cfg80211" "brcmfmac"];
   boot.extraModprobeConfig = lib.mkAfter ''
+    options cfg80211 power_save=0
     options brcmfmac roamoff=1 feature_disable=0x82000
   '';
 
@@ -167,6 +168,7 @@ in
         "d8:5e:d3:8e:79:6a,10.48.0.2,lunaere"
         "bc:24:11:5f:7a:bd,10.48.0.3,plachta"
         "bc:24:11:47:43:7b,10.48.0.4,xaihi"
+        "bc:24:11:fd:4c:4b,10.48.0.5,yvonne"
       ];
 
       dhcp-option = [
@@ -204,6 +206,16 @@ in
         proto = "tcp";
         destination = "10.48.0.4:8448";
         loopbackIPs = [publicIp];
+      }
+      {
+        sourcePort = 56881;
+        proto = "tcp";
+        destination = "10.48.0.5:56881";
+      }
+      {
+        sourcePort = "50000:51000";
+        proto = "udp";
+        destination = "10.48.0.5:50000-51000";
       }
     ];
   };
