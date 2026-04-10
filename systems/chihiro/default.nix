@@ -20,6 +20,7 @@ in
     ./jellyfin.nix
     ./outline.nix
     ./zrepl.nix
+    ./frostracker.nix
     ./users.nix
     ./agenix.nix
 

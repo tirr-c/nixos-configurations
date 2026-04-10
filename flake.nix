@@ -62,6 +62,7 @@
           } // commonSpecialArgs;
 
           modules = [
+            ./modules/frostracker
             ./modules/nocodb
             ./systems/chihiro
           ];
