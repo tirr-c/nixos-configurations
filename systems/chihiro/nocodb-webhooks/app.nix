@@ -17,7 +17,7 @@ let
     hash = "sha256-9CwmJ40A9ZB+GsEjt4NvOoutZ4+uBPxIf7UhnwBsfGg=";
   };
 
-  depsHash = "sha256-oxKfRREAPF4IfoR6dPFfLvuGv7F73pQ9pYnU6k1JmdI=";
+  depsHash = "sha256-hYPTG8rRUhzViaQ/DMoO8ZhUpYXn2xs634mUQckzMxw=";
   denoDeps = stdenvNoCC.mkDerivation {
     name = "${pname}-deps";
     inherit src;
