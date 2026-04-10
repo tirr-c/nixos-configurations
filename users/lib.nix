@@ -7,6 +7,7 @@ in
 rec {
   homeModules = {
     tirr = ./tirr/config.nix;
+    tirr-minimal = ./tirr/minimal.nix;
   };
 
   mkHomeConfiguration =

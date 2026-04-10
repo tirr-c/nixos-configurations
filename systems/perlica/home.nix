@@ -1,12 +1,10 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 
 {
   imports = [
-    inputs.self.lib.homeModules.tirr
+    inputs.self.lib.homeModules.tirr-minimal
   ];
 
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
-
-  programs.awscli.enable = lib.mkForce false;
 }
