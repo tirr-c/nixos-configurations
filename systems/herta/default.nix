@@ -83,6 +83,7 @@
             rightalt = "hangeul";
             rightcontrol = "hanja";
             rightshift = "rightshift";
+            capslock = "leftcontrol";
           };
         };
       };
