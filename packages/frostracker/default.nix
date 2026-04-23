@@ -8,7 +8,7 @@
 
 let
   pname = "frostracker";
-  rev = "375164ee5411fe9d10cdd1714d88267b1c5c80d2";
+  rev = "52606ea998baacafe6a0bcdfa390da9f09abd3dc";
   npmDepsHash = "sha256-xLUPn4JPM2MC9N6tY8RvsB9AFTBo12nuK/QsWlU1Xfo=";
 
   app = buildNpmPackage {
@@ -36,5 +36,5 @@ in
 writeShellScriptBin pname ''
   set -eu
   export NODE_ENV=production
-  exec ${lib.getExe nodejs} ${app}/server/index.cjs
+  exec ${lib.getExe nodejs} ${app}/server/index.js
 ''
