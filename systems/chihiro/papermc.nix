@@ -6,17 +6,24 @@ in
 
 {
   nixpkgs.overlays = [
-    (final: prev: {
-      papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: {
-        version = "1.21.11-91";
-        hash = "sha256-Za9vw08rywm80o9u6tH0Aum+JjagMS7T4XDmfIIXkCU=";
+    (final: prev: (
+      let
+        replaceJre = builtins.replaceStrings [(lib.getExe prev.jre)] [(lib.getExe prev.openjdk25)];
+      in
+      {
+        papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: {
+          version = "26.1.2-60";
+          hash = "sha256-agOzZdZsaK0NT+hDxRGD182/sg+j0RskI5hGSPS8nlc=";
 
-        src = pkgs.fetchurl {
-          url = "https://fill-data.papermc.io/v1/objects/65af6fc34f2bcb09bcd28f6eead1f402e9be2636a0312ed3e170e67c82179025/paper-1.21.11-91.jar";
-          inherit (finalAttrs) hash;
-        };
-      });
-    })
+          src = pkgs.fetchurl {
+            url = "https://fill-data.papermc.io/v1/objects/6a03b365d66c68ad0d4fe843c51183d7cdbfb20fa3d11b2423984648f4bc9e57/paper-26.1.2-60.jar";
+            inherit (finalAttrs) hash;
+          };
+
+          installPhase = replaceJre prevAttrs.installPhase;
+        });
+      }
+    ))
   ];
 
   systemd.sockets.papermc = {
