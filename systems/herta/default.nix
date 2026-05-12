@@ -120,6 +120,7 @@
     git
     curl
     btrfs-progs
+    blender-hip
     wineWowPackages.staging
     winetricks
   ];
