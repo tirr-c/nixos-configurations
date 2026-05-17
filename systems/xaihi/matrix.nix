@@ -33,11 +33,8 @@ in
     package = out-of-your-element;
   };
 
-  services.caddy = {
-    enable = true;
-    email = "retica@tirr.dev";
-
-    virtualHosts."matrix.tirr.dev" = {
+  services.caddy.virtualHosts = {
+    "matrix.tirr.dev" = {
       serverAliases = ["matrix.tirr.dev:8448"];
 
       extraConfig = ''
@@ -48,7 +45,7 @@ in
       '';
     };
 
-    virtualHosts."bridge.matrix.tirr.dev" = {
+    "bridge.matrix.tirr.dev" = {
       extraConfig = ''
         reverse_proxy localhost:6693
       '';
@@ -57,8 +54,5 @@ in
 
   systemd.services.ooye.after = ["continuwuity.service" "caddy.service"];
 
-  networking.firewall = {
-    allowedTCPPorts = [80 443 8448];
-    allowedUDPPorts = [443];
-  };
+  networking.firewall.allowedTCPPorts = [8448];
 }

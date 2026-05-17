@@ -5,9 +5,11 @@
     ../profiles/base.nix
     ./hardware-configuration.nix
     ./disks.nix
+    ./caddy.nix
     ./matrix.nix
     ./users.nix
     ./prometheus.nix
+    ./grafana.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
