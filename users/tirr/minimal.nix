@@ -53,6 +53,15 @@
     };
   };
 
+  programs.git-credential-oauth.enable = true;
+  programs.git.settings.credential = {
+    "https://git.tirr.dev" = {
+      oauthClientId = "4cd1e89a-39fe-42d5-a5de-e0bef6865582";
+      oauthAuthURL = "/login/oauth/authorize";
+      oauthTokenURL = "/login/oauth/access_token";
+    };
+  };
+
   programs.htop.enable = true;
 
   programs.neovim = {
