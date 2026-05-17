@@ -101,10 +101,8 @@ in
         ];
         syntaxPlugins = with pkgs.vimPlugins; [
           rust-vim
-          typescript-vim
           vim-javascript
           vim-jsx-pretty
-          vim-pug
           vim-terraform
           vim-toml
           vim-vue
