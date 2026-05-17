@@ -10,6 +10,7 @@
     ./users.nix
     ./prometheus.nix
     ./grafana.nix
+    ./forgejo.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
