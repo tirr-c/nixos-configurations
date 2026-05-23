@@ -20,6 +20,15 @@ in
       };
 
       service.DISABLE_REGISTRATION = true;
+
+      DEFAULT = {
+        APP_NAME = "Tirr Forge";
+      };
+
+      "ui.meta" = {
+        AUTHOR = "Tirr";
+        DESCRIPTION = "Tirr's self-hosted code forge";
+      };
     };
   };
 
