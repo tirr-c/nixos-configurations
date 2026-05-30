@@ -82,8 +82,8 @@ in
     plugins =
       let
         vimPlugins = with pkgs.vimPlugins; [
-          fzfWrapper
           fzf-vim
+          fzf-wrapper
           tirrcolo
           vim-airline
           vim-airline-themes

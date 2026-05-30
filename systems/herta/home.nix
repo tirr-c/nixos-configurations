@@ -87,18 +87,16 @@
 
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
-  programs.ssh.matchBlocks = {
-    lunaere = {
-      host = "lunaere-tirrsmb";
-      hostname = "10.48.0.2";
-      user = "tirrsmb";
-      identityFile = "${config.home.homeDirectory}/.ssh/tirrsmb";
+  programs.ssh.settings = {
+    "lunaere-tirrsmb" = {
+      User = "tirrsmb";
+      HostName = "10.48.0.2";
+      IdentityFile = "${config.home.homeDirectory}/.ssh/tirrsmb";
     };
 
-    aws = {
-      host = "lydie.mitir.social suelle.mitir.social";
-      user = "ec2-user";
-      identityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
+    "lydie.mitir.social suelle.mitir.social" = {
+      User = "ec2-user";
+      IdentityAgent = "${config.home.homeDirectory}/.1password/agent.sock";
     };
   };
 

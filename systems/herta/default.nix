@@ -22,7 +22,10 @@
     libdispatch-disable-swift
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    rocmSupport = true;
+  };
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
 
@@ -120,8 +123,9 @@
     git
     curl
     btrfs-progs
-    blender-hip
-    wineWowPackages.staging
+    blender
+    unityhub
+    wineWow64Packages.staging
     winetricks
   ];
 
