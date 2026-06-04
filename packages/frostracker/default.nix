@@ -8,7 +8,7 @@
 
 let
   pname = "frostracker";
-  rev = "52606ea998baacafe6a0bcdfa390da9f09abd3dc";
+  rev = "a94ed58ed93f3a506f7d02ce70fd4f02c1f855e2";
   npmDepsHash = "sha256-xLUPn4JPM2MC9N6tY8RvsB9AFTBo12nuK/QsWlU1Xfo=";
 
   app = buildNpmPackage {
