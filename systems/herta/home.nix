@@ -16,6 +16,7 @@
     mpv
     prismlauncher
     ungoogled-chromium
+    uv
     vesktop
   ];
 
@@ -88,9 +89,9 @@
   programs.ssh.enable = true;
   programs.ssh.enableDefaultConfig = false;
   programs.ssh.settings = {
-    "lunaere-tirrsmb" = {
+    "plachta-tirrsmb" = {
       User = "tirrsmb";
-      HostName = "10.48.0.2";
+      HostName = "plachta.tirr.local";
       IdentityFile = "${config.home.homeDirectory}/.ssh/tirrsmb";
     };
 
