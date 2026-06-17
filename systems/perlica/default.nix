@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -15,7 +15,6 @@
   # Enables the generation of /boot/extlinux/extlinux.conf
   boot.loader.generic-extlinux-compatible.enable = true;
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
   hardware.enableRedistributableFirmware = true;
 
   time.timeZone = "Asia/Seoul";
