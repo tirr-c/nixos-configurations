@@ -49,6 +49,8 @@
 
       nixosConfigurations = {
         herta = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
           specialArgs = {
             host = "herta";
           } // commonSpecialArgs;
@@ -60,6 +62,8 @@
         };
 
         chihiro = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
           specialArgs = {
             host = "chihiro";
           } // commonSpecialArgs;
@@ -72,6 +76,8 @@
         };
 
         perlica = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+
           specialArgs = {
             host = "perlica";
           } // commonSpecialArgs;
@@ -83,6 +89,8 @@
         };
 
         plachta = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
           specialArgs = {
             host = "plachta";
           } // commonSpecialArgs;
@@ -93,6 +101,8 @@
         };
 
         xaihi = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
           specialArgs = {
             host = "xaihi";
           } // commonSpecialArgs;
@@ -104,6 +114,8 @@
         };
 
         yvonne = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
           specialArgs = {
             host = "yvonne";
           } // commonSpecialArgs;
