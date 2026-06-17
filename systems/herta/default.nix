@@ -145,6 +145,7 @@
   };
 
   services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
 
   services.hardware.openrgb = {
     enable = true;
