@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./disks.nix
     ./users.nix
+    ./agenix.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

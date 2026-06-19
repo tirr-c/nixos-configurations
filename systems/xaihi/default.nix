@@ -11,6 +11,7 @@
     ./prometheus.nix
     ./grafana.nix
     ./forgejo.nix
+    ./agenix.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

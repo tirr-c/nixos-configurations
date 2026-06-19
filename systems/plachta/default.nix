@@ -7,6 +7,7 @@
     ./disks.nix
     ./users.nix
     ./zrepl.nix
+    ./agenix.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
