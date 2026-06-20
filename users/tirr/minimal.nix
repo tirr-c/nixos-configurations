@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
 
+let
+  tirrcolo = pkgs.callPackage ../../packages/tirrcolo {};
+in
+
 {
   home.username = "tirr";
 
@@ -77,11 +81,39 @@
 
     plugins = with pkgs.vimPlugins; [
       editorconfig-vim
+      fzf-vim
+      fzf-wrapper
+      vim-airline
+      vim-airline-themes
       vim-better-whitespace
       vim-sensible
+    ] ++ [
+      tirrcolo
+      {
+        plugin = pkgs.vimPlugins.nvim-lspconfig;
+        type = "lua";
+        config = lib.fileContents ./vim/lsp.lua;
+      }
+      {
+        plugin = pkgs.vimPlugins.nvim-notify;
+        type = "lua";
+        config = lib.fileContents ./vim/notify.lua;
+      }
     ];
 
-    extraConfig = (lib.fileContents ./vim/vimrc) + "\n";
+    extraConfig =
+      let
+        files = [
+          ./vim/vimrc
+          ./vim/airline.vim
+          ./vim/fzf.vim
+        ];
+        fileContents = builtins.map lib.fileContents files;
+      in
+      lib.mkMerge [
+        (lib.mkAfter "colo tirr\n")
+        (lib.mkAfter ((builtins.concatStringsSep "\n" fileContents) + "\n"))
+      ];
   };
 
   programs.ripgrep.enable = true;

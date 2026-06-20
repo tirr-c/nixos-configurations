@@ -82,22 +82,6 @@ in
     plugins =
       let
         vimPlugins = with pkgs.vimPlugins; [
-          fzf-vim
-          fzf-wrapper
-          tirrcolo
-          vim-airline
-          vim-airline-themes
-        ] ++ [
-          {
-            plugin = pkgs.vimPlugins.nvim-lspconfig;
-            type = "lua";
-            config = lib.fileContents ./vim/lsp.lua;
-          }
-          {
-            plugin = pkgs.vimPlugins.nvim-notify;
-            type = "lua";
-            config = lib.fileContents ./vim/notify.lua;
-          }
         ];
         syntaxPlugins = with pkgs.vimPlugins; [
           rust-vim
@@ -113,16 +97,11 @@ in
     extraConfig =
       let
         files = [
-          ./vim/airline.vim
-          ./vim/fzf.vim
           ./vim/jsx.vim
         ];
         fileContents = builtins.map lib.fileContents files;
       in
-      lib.mkMerge [
-        (lib.mkAfter "colo tirr\n")
-        (lib.mkAfter ((builtins.concatStringsSep "\n" fileContents) + "\n"))
-      ];
+      lib.mkAfter ((builtins.concatStringsSep "\n" fileContents) + "\n");
   };
 
   programs.zsh.dirHashes = {

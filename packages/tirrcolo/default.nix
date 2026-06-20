@@ -9,7 +9,7 @@ vimUtils.buildVimPlugin {
   src = fetchFromGitHub {
     owner = "tirr-c";
     repo = "tirrcolo";
-    rev = "018fdf2c70ef182d51391fc9c49eeeb00c42ef0b";
-    hash = "sha256-GrbSvIZyVDmm6e9YIN4+orNTfuuZIpf1YGp9HqUnN+A=";
+    rev = "a48c4b4f821647ef3cc1281dd21393d1f1fa8b5d";
+    hash = "sha256-nrtpwOuiIWiiJptFx1+YgTgd4UGL5NQ96PGQ1dspK8Q=";
   };
 }
