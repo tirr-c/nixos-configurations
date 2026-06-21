@@ -9,12 +9,9 @@
     };
   };
 
-  nix.settings = {
-    allowed-users = ["harmonia"];
-    trusted-public-keys = [
-      (builtins.readFile ../herta/nix-store-public-key.pub)
-    ];
-  };
+  nix.settings.trusted-public-keys = [
+    (builtins.readFile ../herta/nix-store-public-key.pub)
+  ];
 
   services.caddy.enable = true;
   services.caddy.globalConfig = ''
