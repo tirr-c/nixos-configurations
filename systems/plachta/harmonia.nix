@@ -4,6 +4,9 @@
   services.harmonia.cache = {
     enable = true;
     signKeyPaths = [config.age.secrets.nix-store-private-key.path];
+    settings = {
+      bind = "127.0.0.1:5000";
+    };
   };
 
   nix.settings = {
@@ -22,5 +25,9 @@
     extraConfig = ''
       reverse_proxy 127.0.0.1:5000
     '';
+  };
+
+  networking.firewall = {
+    allowedTCPPorts = [80];
   };
 }
