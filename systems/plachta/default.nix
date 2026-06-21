@@ -7,6 +7,7 @@
     ./disks.nix
     ./users.nix
     ./zrepl.nix
+    ./harmonia.nix
     ./agenix.nix
   ];
 
