@@ -26,6 +26,12 @@ in
           { targets = ["plachta.tirr.local:9811"]; }
         ];
       }
+      {
+        job_name = "harmonia";
+        static_configs = [
+          { targets = ["plachta.tirr.local:5000"]; }
+        ];
+      }
     ];
   };
 

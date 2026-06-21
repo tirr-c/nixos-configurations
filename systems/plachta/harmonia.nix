@@ -5,7 +5,6 @@
     enable = true;
     signKeyPaths = [config.age.secrets.nix-store-private-key.path];
     settings = {
-      bind = "127.0.0.1:5000";
       enable_compression = true;
     };
   };
@@ -21,11 +20,14 @@
 
   services.caddy.virtualHosts."http://nix-store-cache.internal.tirr.network" = {
     extraConfig = ''
-      reverse_proxy 127.0.0.1:5000
+      @target {
+        not path /metrics
+      }
+      reverse_proxy @target 127.0.0.1:5000
     '';
   };
 
   networking.firewall = {
-    allowedTCPPorts = [80];
+    allowedTCPPorts = [80 5000];
   };
 }
