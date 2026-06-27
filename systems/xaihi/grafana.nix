@@ -17,6 +17,9 @@ in
         domain = "grafana.internal.tirr.network";
         root_url = "https://${srv.domain}/";
       };
+
+      # Use the old key for now
+      security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
     };
   };
 
