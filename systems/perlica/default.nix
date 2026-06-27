@@ -3,6 +3,7 @@
 {
   imports = [
     ../profiles/base.nix
+    ../profiles/cache-substitute.nix
     ./hardware-configuration.nix
     ./disks.nix
     ./networking.nix

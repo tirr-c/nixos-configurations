@@ -8,11 +8,13 @@
     ../profiles/fonts.nix
     ../profiles/obs.nix
     ../profiles/sunshine.nix
+    ../profiles/cache-substitute.nix
     ./hardware-configuration.nix
     ./waydroid.nix
     ./disks.nix
     ./users.nix
     ./vm.nix
+    ./nix-store-sign.nix
     ./agenix.nix
   ];
 

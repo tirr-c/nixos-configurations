@@ -4,6 +4,7 @@
   imports = [
     ../profiles/base.nix
     ../profiles/nvidia.nix
+    ../profiles/cache-substitute.nix
     ./hardware-configuration.nix
     ./disks.nix
     ./users.nix
