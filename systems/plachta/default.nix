@@ -15,8 +15,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.systemd.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   networking.hostId = "64c32bc3";
   networking.useNetworkd = true;
   networking.interfaces.ens18.useDHCP = true;

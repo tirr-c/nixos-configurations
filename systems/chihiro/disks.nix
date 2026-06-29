@@ -1,10 +1,8 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   boot.supportedFilesystems = ["zfs"];
   boot.zfs = {
-    package = pkgs.zfs_2_4;
-
     forceImportRoot = false;
     devNodes = "/dev/disk/by-id";
     extraPools = ["veritas"];
