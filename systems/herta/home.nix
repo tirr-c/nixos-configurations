@@ -17,7 +17,9 @@
     prismlauncher
     ungoogled-chromium
     uv
-    vesktop
+    (vesktop.override {
+      pnpm_10_29_2 = pnpm_10;
+    })
   ];
 
   home.language.base = "ko_KR.UTF-8";
