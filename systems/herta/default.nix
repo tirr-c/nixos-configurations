@@ -26,7 +26,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-    rocmSupport = true;
   };
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
@@ -125,7 +124,6 @@
     git
     curl
     btrfs-progs
-    blender
     unityhub
     wineWow64Packages.staging
     winetricks
