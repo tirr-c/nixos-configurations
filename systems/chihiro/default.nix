@@ -21,6 +21,7 @@ in
     ./outline.nix
     ./zrepl.nix
     ./frostracker.nix
+    ./immich.nix
     ./users.nix
     ./agenix.nix
 
