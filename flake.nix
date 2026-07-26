@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,6 +73,19 @@
             ./modules/frostracker
             ./modules/nocodb
             ./systems/chihiro
+          ];
+        };
+
+        himari = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+
+          specialArgs = {
+            host = "himari";
+          } // commonSpecialArgs;
+
+          modules = [
+            nixos-hardware.nixosModules.raspberry-pi-4
+            ./systems/himari
           ];
         };
 

@@ -1,0 +1,85 @@
+{
+  "groups": {
+    "group:regular": [
+      "tirr@",
+      "cseteram@",
+      "vionicbest@",
+      "mappy@",
+      "coffeetea@",
+      "charlese@",
+      "pbzweihander@",
+      "matgam@",
+      "oenothera@"
+    ]
+  },
+  "tagOwners": {
+    "tag:server": ["group:regular"]
+  },
+  "hosts": {
+    "tirragit.internal": "172.30.1.0/24",
+    "papermc.internal": "100.64.0.3/32"
+  },
+  "nodeAttrs": [
+    {
+      "target": ["tag:server"],
+      "attr": ["drive:share"]
+    },
+    {
+      "target": ["group:regular"],
+      "attr": ["drive:share", "drive:access"]
+    }
+  ],
+  "grants": [
+    {
+      "src": ["autogroup:member"],
+      "dst": ["autogroup:self"],
+      "ip": ["*"]
+    },
+    {
+      "src": ["tag:server"],
+      "dst": ["tag:server"],
+      "ip": ["*"]
+    },
+    {
+      "src": ["*"],
+      "dst": ["papermc.internal"],
+      "ip": ["8100", "25565"]
+    },
+    {
+      "src": ["group:regular"],
+      "dst": ["tag:server", "tirragit.internal", "autogroup:internet"],
+      "ip": ["*"]
+    },
+    {
+      "src": ["group:regular"],
+      "dst": ["tag:server"],
+      "app": {
+        "tailscale.com/cap/drive": [
+          {
+            "shares": ["*"],
+            "access": "rw"
+          }
+        ]
+      }
+    },
+    {
+      "src": ["autogroup:member"],
+      "dst": ["autogroup:self"],
+      "app": {
+        "tailscale.com/cap/drive": [
+          {
+            "shares": ["*"],
+            "access": "rw"
+          }
+        ]
+      }
+    }
+  ],
+  "tests": [
+    {
+      "src": "group:regular",
+      "proto": "tcp",
+      "accept": ["172.30.1.68:22"]
+    }
+  ]
+}
