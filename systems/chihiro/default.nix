@@ -16,6 +16,7 @@ in
     ./hardware-configuration.nix
     ./disks.nix
     ./papermc.nix
+    ./caddy.nix
     ./calibre.nix
     ./jellyfin.nix
     ./outline.nix
@@ -140,6 +141,16 @@ in
       proxy-trusted-addresses = "127.0.0.0/8,172.30.1.68";
     };
   };
+
+  services.caddy.virtualHosts = {
+    "keycloak.veritas.tirr.network" = {
+      extraConfig = ''
+        reverse_proxy 127.0.0.1:8080
+      '';
+    };
+  };
+
+  networking.hosts."127.0.0.1" = ["keycloak.veritas.tirr.network"];
 
   services.nocodb = {
     enable = true;

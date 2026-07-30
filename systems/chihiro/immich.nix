@@ -44,4 +44,14 @@
       };
     };
   };
+
+  services.caddy.virtualHosts = {
+    "photos.veritas.tirr.network" = {
+      extraConfig = ''
+        reverse_proxy 127.0.0.1:54080
+      '';
+    };
+  };
+
+  networking.hosts."127.0.0.1" = ["photos.veritas.tirr.network"];
 }

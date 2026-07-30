@@ -55,12 +55,6 @@ in
     after = ["network.target"];
   };
 
-  services.caddy.enable = true;
-
-  services.caddy.globalConfig = ''
-    skip_install_trust
-  '';
-
   # Bluemap
   services.caddy.virtualHosts."https://100.64.0.3:8100" = {
     extraConfig = ''
