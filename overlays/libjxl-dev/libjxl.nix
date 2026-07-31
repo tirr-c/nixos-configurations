@@ -1,9 +1,9 @@
 {
   fetchFromGitHub,
   libjxl,
-  libjxlVersion ? "0.12.0-dev",
-  libjxlRev ? "462d28d89c151308278ac704db3daed5db07106a",
-  libjxlHash ? "sha256-UWPdfLMLcgVWiBVkYvdGu4Ve9pTSkXIAbMZTxLydkWw=",
+  libjxlVersion ? "0.13.0-dev",
+  libjxlRev ? "196a43d996aa6ed33ebf98812a7c6d43b2b6d01b",
+  libjxlHash ? "sha256-3FttoL7ULJI/ujPiIlYhNUNHaTODZYyaw1Ki1ao0Tys=",
   ninja,
 }:
 
