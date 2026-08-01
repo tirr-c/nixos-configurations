@@ -12,6 +12,10 @@
     ./headscale
   ];
 
+  nix.settings.trusted-public-keys = [
+    (builtins.readFile ../frieren/nix-store-public-key.pub)
+  ];
+
   # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf

@@ -11,6 +11,7 @@
 
   nix.settings.trusted-public-keys = [
     (builtins.readFile ../herta/nix-store-public-key.pub)
+    (builtins.readFile ../frieren/nix-store-public-key.pub)
   ];
 
   services.caddy.enable = true;
