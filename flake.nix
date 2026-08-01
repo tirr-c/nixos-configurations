@@ -138,6 +138,18 @@
             ./systems/yvonne
           ];
         };
+
+        sophie = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+
+          specialArgs = {
+            host = "";
+          } // commonSpecialArgs;
+
+          modules = [
+            ./systems/sophie
+          ];
+        };
       };
     in
 

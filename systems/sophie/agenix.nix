@@ -1,0 +1,10 @@
+{ ... }:
+
+{
+  imports = [
+    ../../secrets
+  ];
+
+  age.secrets = {
+  };
+}
