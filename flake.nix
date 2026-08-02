@@ -31,6 +31,10 @@
       url = "github:NixOS/nixos-hardware/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    misskey = {
+      url = "github:tirr-c/misskey?ref=develop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, nur, agenix-rekey, nixos-hardware, ... }:

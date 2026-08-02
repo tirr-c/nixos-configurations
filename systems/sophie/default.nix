@@ -6,6 +6,8 @@
     ./hardware-configuration.nix
     ./users.nix
     ./agenix.nix
+
+    ./misskey
   ];
 
   nix.settings.trusted-public-keys = [
