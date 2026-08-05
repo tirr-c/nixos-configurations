@@ -14,7 +14,7 @@
     "port": 6379
   },
   "fulltextSearch": {
-    "provider": "pgroonga"
+    "provider": "sqlPgroonga"
   },
   "id": "aid",
   "outgoingAddressFamily": "ipv4",
