@@ -276,11 +276,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779693665,
-        "narHash": "sha256-Yu1IhNj8moHStVNA+l+6gVmuT5x/1now8e3sj1K3UIc=",
+        "lastModified": 1785956237,
+        "narHash": "sha256-uv2vQktNQ00L+1M7YWiuSj8IXUuSakv+iRbifh60ZBE=",
         "owner": "tirr-c",
         "repo": "misskey",
-        "rev": "ae61e24f2c4b276c185b5f68595d946d92bdf27e",
+        "rev": "2f0ec7470e4c24bdf892cf2eb6b2e96b0d0af73d",
         "type": "github"
       },
       "original": {

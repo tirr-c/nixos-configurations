@@ -1,0 +1,29 @@
+{
+  "url": "https://mitir.social/",
+  "port": 3000,
+  "db": {
+    "host": "/var/run/postgresql",
+    "port": 5432,
+    "db": "misskey",
+    "user": "misskey",
+    "pass": null
+  },
+  "dbReplications": false,
+  "redis": {
+    "host": "127.0.0.1",
+    "port": 6379
+  },
+  "fulltextSearch": {
+    "provider": "pgroonga"
+  },
+  "id": "aid",
+  "outgoingAddressFamily": "ipv4",
+  "proxyBypassHosts": [
+    "api.deepl.com",
+    "api-free.deepl.com",
+    "www.recaptcha.net",
+    "hcaptcha.com",
+    "challenges.cloudflare.com"
+  ],
+  "signToActivitiyPubGet": true
+}
