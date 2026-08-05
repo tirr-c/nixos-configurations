@@ -57,6 +57,7 @@ in
 
   services.caddy = {
     enable = true;
+    openFirewall = true;
     virtualHosts."mitir.social" = {
       useACMEHost = "mitir.social";
       extraConfig = ''
