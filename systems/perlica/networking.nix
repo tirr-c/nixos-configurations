@@ -1,8 +1,7 @@
-{ lib, config, ... }:
+{ config, ... }:
 
 let
   bridgeName = "br-lan";
-  wlanDevName = "wlan0";
   uplinkDevName = "enp1s0";
   publicIp = "210.121.177.250";
   localDomain = "tirr.local";
@@ -35,11 +34,6 @@ in
         linkConfig.RequiredForOnline = "no";
       };
 
-      "40-wlan0-unmanaged" = {
-        name = "wlan0";
-        linkConfig.Unmanaged = "yes";
-      };
-
       "40-${bridgeName}" = {
         name = bridgeName;
         dns = ["127.0.0.1"];
@@ -64,40 +58,6 @@ in
       };
     };
   };
-
-  services.hostapd = {
-    enable = true;
-
-    radios.${wlanDevName} = {
-      band = "2g";
-      countryCode = "KR";
-
-      wifi4.capabilities = lib.mkForce [
-        "HT40"
-        "SHORT-GI-20"
-      ];
-
-      networks.${wlanDevName} = {
-        ssid = "Lunaere";
-        authentication = {
-          mode = "wpa2-sha1";
-          wpaPasswordFile = config.age.secrets.wpaPassword.path;
-        };
-        settings = {
-          bridge = bridgeName;
-        };
-      };
-    };
-  };
-
-  boot.kernelModules = ["cfg80211" "brcmfmac"];
-  boot.extraModprobeConfig = lib.mkAfter ''
-    options cfg80211 power_save=0
-    options brcmfmac roamoff=1 feature_disable=0x82000
-  '';
-
-  systemd.services.hostapd.wants = ["systemd-networkd-wait-online@${bridgeName}.service"];
-  systemd.services.hostapd.after = ["systemd-networkd-wait-online@${bridgeName}.service"];
 
   services.unbound = {
     enable = true;
@@ -169,6 +129,7 @@ in
         "bc:24:11:5f:7a:bd,10.48.0.3,plachta"
         "bc:24:11:47:43:7b,10.48.0.4,xaihi"
         "bc:24:11:fd:4c:4b,10.48.0.5,yvonne"
+        "b0:38:6c:aa:93:38,10.48.0.6,gilberta"
       ];
 
       dhcp-option = [
