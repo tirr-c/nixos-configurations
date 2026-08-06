@@ -1,12 +1,17 @@
-{ pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = config.nixpkgs.hostPlatform.system;
+  };
+
   out-of-your-element = pkgs.callPackage ../../packages/out-of-your-element {};
 in
 
 {
   services.matrix-continuwuity = {
     enable = true;
+    package = pkgsUnstable.matrix-continuwuity;
 
     settings.global = {
       address = ["127.0.0.1"];
