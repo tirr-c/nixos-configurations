@@ -1,7 +1,7 @@
 {
   lib,
   buildNpmPackage,
-  fetchgit,
+  fetchFromForgejo,
   nodejs,
   writeShellScriptBin,
   ...
@@ -10,16 +10,18 @@
 let
   pname = "out-of-your-element";
 
-  rev = "e6c3013993e8e365549b1db9a249ed5b544b1e9a";
-  hash = "sha256-SQYErgPvoLCcwdUwCa2bPn/3tC0Z5OkhpyzmjrVB0no=";
-  npmDepsHash = "sha256-rh0JKZ1ldQTy9V2QTCluDTDG7PsZOKRD9eEXPYv8peI=";
+  rev = "85b9e4743f1718399bdc18eb882ccc1c92ff0689";
+  hash = "sha256-D2yTHmol6n38XMsHKeZKEw+7gEszOf9P3C53lOM8Tcs=";
+  npmDepsHash = "sha256-uWbIVwK4kETkEL17QPy5t7LfpIItSgPCZkatOgJ4Ub0=";
 
   ooye = buildNpmPackage (finalAttrs: {
     inherit pname;
     version = "0-unstable-${rev}";
 
-    src = fetchgit {
-      url = "https://gitdab.com/cadence/out-of-your-element.git";
+    src = fetchFromForgejo {
+      domain = "gitdab.com";
+      owner = "cadence";
+      repo = "out-of-your-element";
       inherit rev hash;
     };
 
