@@ -23,6 +23,7 @@
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
   hardware.enableRedistributableFirmware = true;
+  hardware.raspberry-pi.firmware.enable = true;
   hardware.raspberry-pi.firmware.uboot.enable = true;
 
   networking.useNetworkd = true;
