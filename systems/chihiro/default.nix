@@ -1,9 +1,4 @@
-{ config, pkgs, lib, ... }:
-
-let
-  nocodb-bin = pkgs.callPackage ../../packages/nocodb-bin {};
-  nocodb-webhooks = pkgs.callPackage ./nocodb-webhooks/app.nix {};
-in
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -15,18 +10,18 @@ in
     ../profiles/sunshine.nix
     ./hardware-configuration.nix
     ./disks.nix
-    ./papermc.nix
-    ./caddy.nix
-    ./calibre.nix
-    ./jellyfin.nix
-    ./outline.nix
-    ./zrepl.nix
-    ./frostracker.nix
-    ./immich.nix
     ./users.nix
     ./agenix.nix
 
-    ./nocodb-webhooks
+    ./caddy.nix
+    ./calibre.nix
+    ./frostracker.nix
+    ./immich.nix
+    ./keycloak.nix
+    ./nocodb
+    ./outline.nix
+    ./papermc.nix
+    ./zrepl.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -127,48 +122,6 @@ in
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";
-  };
-
-  services.keycloak = {
-    enable = true;
-    database.passwordFile = config.age.secrets.keycloak-db.path;
-    settings = {
-      hostname = "https://keycloak.veritas.tirr.network";
-      http-enabled = true;
-      http-host = "0.0.0.0";
-      http-port = 8080;
-      proxy-headers = "xforwarded";
-      proxy-trusted-addresses = "127.0.0.0/8,172.30.1.68";
-    };
-  };
-
-  services.caddy.virtualHosts = {
-    "keycloak.veritas.tirr.network" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:8080
-      '';
-    };
-  };
-
-  networking.hosts."127.0.0.1" = ["keycloak.veritas.tirr.network"];
-
-  services.nocodb = {
-    enable = true;
-    package = nocodb-bin;
-    port = 59708;
-    allowLocalHooks = true;
-  };
-
-  services.nocodb-webhooks = {
-    enable = true;
-    package = nocodb-webhooks;
-    serveAddress = "tcp:0.0.0.0:54443";
-    kakaoApiKeyPath = config.age.secrets.kakao-api-key.path;
-    nocodb = {
-      base = "pcvqhb4nukwy4f6";
-      thumbnailField = "clk6rj1i44c3yjp";
-      apiTokenPath = config.age.secrets.nc-api-token.path;
-    };
   };
 
   security.sudo.wheelNeedsPassword = false;

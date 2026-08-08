@@ -4,6 +4,8 @@ let
   inherit (lib) types;
   cfg = config.services.nocodb-webhooks;
   nocodbConfig = config.services.nocodb;
+
+  nocodb-webhooks = pkgs.callPackage ./app.nix {};
 in
 
 {
@@ -15,6 +17,7 @@ in
 
     package = lib.mkOption {
       type = types.package;
+      default = nocodb-webhooks;
     };
 
     serveAddress = lib.mkOption {
@@ -61,7 +64,7 @@ in
         environment = lib.mkMerge [
           {
             DENO_SERVE_ADDRESS = cfg.serveAddress;
-            NC_HOST = if nocodbConfig.publicUrl != null then nocodbConfig.publicUrl else "http://localhost:${builtins.toString nocodbConfig.port}";
+            NC_HOST = if nocodbConfig.publicUrl != null then nocodbConfig.publicUrl else "http://localhost:${toString nocodbConfig.port}";
             NC_BASE_ID = cfg.nocodb.base;
             NC_THUMBNAIL_FIELD_ID = cfg.nocodb.thumbnailField;
           }
