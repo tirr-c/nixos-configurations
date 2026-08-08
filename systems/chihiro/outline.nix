@@ -19,14 +19,4 @@
 
     defaultLanguage = "ko_KR";
   };
-
-  services.caddy.virtualHosts = {
-    "outline.veritas.tirr.network" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:56029
-      '';
-    };
-  };
-
-  networking.hosts."127.0.0.1" = ["outline.veritas.tirr.network"];
 }
