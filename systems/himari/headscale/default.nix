@@ -35,10 +35,13 @@ in
   };
 
   services.caddy.virtualHosts.${serverUrl} = {
+    useACMEHost = serverUrl;
     extraConfig = ''
       reverse_proxy localhost:${port}
     '';
   };
+
+  security.acme.certs.${serverUrl} = {};
 
   networking.hosts = {
     "127.0.0.1" = [serverUrl];
