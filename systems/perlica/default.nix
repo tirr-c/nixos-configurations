@@ -1,7 +1,9 @@
-{ lib, pkgs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+
     ../profiles/base.nix
     ../profiles/cache-substitute.nix
     ./hardware-configuration.nix
@@ -11,12 +13,6 @@
     ./agenix.nix
   ];
 
-  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
-  boot.loader.grub.enable = false;
-  # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
-
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
   hardware.enableRedistributableFirmware = true;
 
   time.timeZone = "Asia/Seoul";

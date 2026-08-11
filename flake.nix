@@ -88,7 +88,6 @@
           } // commonSpecialArgs;
 
           modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
             ./systems/himari
           ];
         };
@@ -101,7 +100,6 @@
           } // commonSpecialArgs;
 
           modules = [
-            nixos-hardware.nixosModules.raspberry-pi-4
             ./systems/perlica
           ];
         };

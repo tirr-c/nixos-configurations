@@ -1,7 +1,9 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, inputs, ... }:
 
 {
   imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+
     ../profiles/base.nix
     ./hardware-configuration.nix
     ./disks.nix
@@ -17,15 +19,11 @@
     (builtins.readFile ../frieren/nix-store-public-key.pub)
   ];
 
-  # Use the extlinux boot loader. (NixOS wants to enable GRUB by default)
-  boot.loader.grub.enable = false;
-  # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
-
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_18;
   hardware.enableRedistributableFirmware = true;
-  hardware.raspberry-pi.firmware.enable = true;
-  hardware.raspberry-pi.firmware.uboot.enable = true;
+  hardware.raspberry-pi.firmware = {
+    enable = true;
+    uboot.enable = true;
+  };
 
   networking.useNetworkd = true;
   networking.interfaces.end0.useDHCP = true;
