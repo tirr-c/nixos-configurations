@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
@@ -13,10 +13,6 @@
     ./acme.nix
     ./caddy.nix
     ./headscale
-  ];
-
-  nix.settings.trusted-public-keys = [
-    (builtins.readFile ../frieren/nix-store-public-key.pub)
   ];
 
   hardware.enableRedistributableFirmware = true;
