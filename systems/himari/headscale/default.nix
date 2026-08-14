@@ -21,6 +21,7 @@ in
         base_domain = "veritas.local";
         override_local_dns = false;
       };
+      trusted_proxies = ["127.0.0.1/32"];
       oidc = {
         issuer = "https://keycloak.veritas.tirr.network/realms/master";
         client_id = "headscale";
