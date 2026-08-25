@@ -1,12 +1,9 @@
 { config, pkgs, lib, ... }:
 
-let
-  tirrcolo = pkgs.callPackage ../../packages/tirrcolo {};
-in
-
 {
   imports = [
     ./minimal.nix
+    ../../modules/pi-coding-agent.nix
   ];
 
   home.homeDirectory = "/home/tirr";

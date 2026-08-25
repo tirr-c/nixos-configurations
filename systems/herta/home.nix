@@ -1,5 +1,11 @@
 { config, pkgs, inputs, ... }:
 
+let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+  };
+in
+
 {
   imports = [
     inputs.self.lib.homeModules.tirr
@@ -84,6 +90,57 @@
         }
       ];
     };
+  };
+
+  programs.pi-coding-agent = {
+    enable = true;
+    package = pkgsUnstable.pi-coding-agent;
+    extraPackages = [
+      pkgsUnstable.nodejs
+      pkgs.python3
+      pkgs.qemu
+    ];
+
+    settings = {
+      defaultProvider = "openai";
+      defaultModel = "gpt-5.6-luna";
+      defaultThinkingLevel = "xhigh";
+      enabledModels = [
+        "gpt-5.6-*"
+      ];
+
+      showCacheMissNotices = true;
+
+      collapseChangelog = true;
+      enableInstallTelemetry = false;
+      tuiMode = "fullscreen";
+      fullscreenExitOutput = "resume-hint";
+
+      defaultTools = [
+        "read"
+        "bash"
+        "edit"
+        "write"
+        "grep"
+        "find"
+        "ls"
+      ];
+    };
+
+    keybindings =
+      let
+        esc = ["escape" "ctrl+["];
+      in
+      {
+        "app.interrupt" = esc;
+        "tui.select.cancel" = esc;
+        "tui.altScreen.halfPageUp" = "ctrl+b";
+        "tui.altScreen.halfPageDown" = "ctrl+f";
+        "tui.altScreen.lineUp" = "ctrl+up";
+        "tui.altScreen.lineDown" = "ctrl+down";
+        "tui.altScreen.search" = "ctrl+/";
+        "tui.altScreen.searchClose" = esc;
+      };
   };
 
   programs.ssh.enable = true;
