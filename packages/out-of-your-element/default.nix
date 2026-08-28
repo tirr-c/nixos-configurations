@@ -10,9 +10,9 @@
 let
   pname = "out-of-your-element";
 
-  rev = "85b9e4743f1718399bdc18eb882ccc1c92ff0689";
-  hash = "sha256-D2yTHmol6n38XMsHKeZKEw+7gEszOf9P3C53lOM8Tcs=";
-  npmDepsHash = "sha256-uWbIVwK4kETkEL17QPy5t7LfpIItSgPCZkatOgJ4Ub0=";
+  rev = "c7389ff2d6feb1c33a7f5963984c468691dc1b72";
+  hash = "sha256-Jrt0jQzKgJJaZ5btk7okw2+65KZx27P8n4/xvykns3Y=";
+  npmDepsHash = "sha256-4iJCCpw+0YEnMPBAlHx6cOSImEjjOm/fbwzPnwzQrxw=";
 
   ooye = buildNpmPackage (finalAttrs: {
     inherit pname;
