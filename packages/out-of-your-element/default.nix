@@ -2,12 +2,14 @@
   lib,
   buildNpmPackage,
   fetchFromForgejo,
-  nodejs,
+  nodejs_22,
   writeShellScriptBin,
   ...
 }:
 
 let
+  nodejs = nodejs_22;
+
   pname = "out-of-your-element";
 
   rev = "c7389ff2d6feb1c33a7f5963984c468691dc1b72";
