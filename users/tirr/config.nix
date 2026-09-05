@@ -3,7 +3,6 @@
 {
   imports = [
     ./minimal.nix
-    ../../modules/pi-coding-agent.nix
   ];
 
   home.homeDirectory = "/home/tirr";

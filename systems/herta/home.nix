@@ -9,6 +9,7 @@ in
 {
   imports = [
     inputs.self.lib.homeModules.tirr
+    ../../modules/pi-coding-agent.nix
   ];
 
   home.packages = with pkgs; [
