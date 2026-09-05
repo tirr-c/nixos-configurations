@@ -104,10 +104,11 @@ in
 
     settings = {
       defaultProvider = "openai";
-      defaultModel = "gpt-5.6-luna";
-      defaultThinkingLevel = "xhigh";
+      defaultModel = "gpt-5.6-terra";
+      defaultThinkingLevel = "medium";
       enabledModels = [
         "gpt-5.6-*"
+        "gpt-6-*"
       ];
 
       showCacheMissNotices = true;
