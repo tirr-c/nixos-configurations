@@ -99,13 +99,12 @@ in
     extraPackages = [
       pkgsUnstable.nodejs
       pkgs.python3
-      pkgs.qemu
     ];
 
     settings = {
-      defaultProvider = "openai";
-      defaultModel = "gpt-5.6-terra";
-      defaultThinkingLevel = "medium";
+      defaultProvider = "openai-codex";
+      defaultModel = "gpt-6-astra";
+      defaultThinkingLevel = "low";
       enabledModels = [
         "gpt-5.6-*"
         "gpt-6-*"
