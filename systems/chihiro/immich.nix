@@ -1,8 +1,15 @@
-{ ... }:
+{ config, inputs, ... }:
+
+let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = config.nixpkgs.hostPlatform.system;
+  };
+in
 
 {
   services.immich = {
     enable = true;
+    package = pkgsUnstable.immich;
 
     host = "0.0.0.0";
     port = 54080;
