@@ -99,6 +99,7 @@ in
     extraPackages = [
       pkgsUnstable.nodejs
       pkgs.python3
+      pkgs.bubblewrap
     ];
 
     settings = {
