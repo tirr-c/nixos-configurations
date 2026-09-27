@@ -3,18 +3,20 @@
 {
   imports = [
     ../profiles/base.nix
+    ../profiles/cache-substitute.nix
+    ../profiles/fonts.nix
     ../profiles/graphical.nix
     ../profiles/gaming.nix
-    ../profiles/fonts.nix
     ../profiles/obs.nix
     ../profiles/sunshine.nix
-    ../profiles/cache-substitute.nix
-    ./hardware-configuration.nix
+
+    ./agenix.nix
+    ./bootloader.nix
     ./disks.nix
+    ./hardware-configuration.nix
+    ./nix-store-sign.nix
     ./users.nix
     ./vm.nix
-    ./nix-store-sign.nix
-    ./agenix.nix
   ];
 
   nixpkgs.overlays = with inputs.self.overlays; [
@@ -28,10 +30,6 @@
   };
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.systemd.enable = true;
 
   systemd.network.enable = true;
   networking.useNetworkd = true;
