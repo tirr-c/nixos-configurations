@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, ... }:
+
+let
+  sbctl = config.boot.loader.limine.secureBoot.sbctl;
+in
 
 {
   boot.loader.efi.canTouchEfiVariables = true;
@@ -7,21 +11,17 @@
     enable = true;
     efiSupport = true;
     biosSupport = false;
+    efiInstallAsRemovable = false;
+
+    secureBoot.enable = true;
 
     maxGenerations = 5;
     resolution = "3840x2160x32";
-
-    additionalFiles = {
-      "efi/memtest86/memtest86.efi" = "${pkgs.memtest86-efi}/BOOTX64.efi";
-    };
-    extraEntries = ''
-/memtest86
-  protocol: chainload
-  path: boot():///efi/memtest86/memtest86.efi
-'';
   };
 
+  boot.loader.timeout = lib.mkForce 1;
+
   environment.systemPackages = [
-    config.boot.loader.limine.secureBoot.sbctl
+    sbctl
   ];
 }
