@@ -294,6 +294,28 @@
         "type": "indirect"
       }
     },
+    "pi": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-darwin-x64": []
+      },
+      "locked": {
+        "lastModified": 1791030057,
+        "narHash": "sha256-3llZpAi9YPNS9oRFpkSj/fcNfhvU9E61NY81tTNSizc=",
+        "owner": "earendil-works",
+        "repo": "pi",
+        "rev": "a7229ddc21810d6245105978033b7df645ecc2f7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "earendil-works",
+        "ref": "stable",
+        "repo": "pi",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -327,7 +349,8 @@
         "misskey": "misskey",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "pi": "pi"
       }
     },
     "rust-analyzer-src": {

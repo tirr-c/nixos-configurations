@@ -1,11 +1,5 @@
 { config, pkgs, inputs, ... }:
 
-let
-  pkgsUnstable = import inputs.nixpkgs-unstable {
-    system = pkgs.stdenv.hostPlatform.system;
-  };
-in
-
 {
   imports = [
     inputs.self.lib.homeModules.tirr
@@ -95,9 +89,9 @@ in
 
   programs.pi-coding-agent = {
     enable = true;
-    package = pkgsUnstable.pi-coding-agent;
+    package = pkgs.pi;
     extraPackages = [
-      pkgsUnstable.nodejs
+      pkgs.nodejs
       pkgs.python3
       pkgs.bubblewrap
       pkgs.wl-clipboard

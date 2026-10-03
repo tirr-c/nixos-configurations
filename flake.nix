@@ -30,6 +30,11 @@
       url = "github:tirr-c/misskey?ref=develop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pi = {
+      url = "github:earendil-works/pi?ref=stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-darwin-x64.follows = "";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, agenix-rekey, ... }:
