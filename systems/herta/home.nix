@@ -100,16 +100,22 @@ in
       pkgsUnstable.nodejs
       pkgs.python3
       pkgs.bubblewrap
+      pkgs.wl-clipboard
     ];
 
     settings = {
-      defaultProvider = "openai-codex";
-      defaultModel = "gpt-6-astra";
-      defaultThinkingLevel = "low";
+      defaultProvider = "openai";
+      defaultModel = "gpt-6.1-sol";
       enabledModels = [
-        "gpt-5.6-*"
-        "gpt-6-*"
+        "openai/gpt-6-astra"
+        "openai/gpt-6.1-sol"
+        "openai/gpt-6-luna"
       ];
+      modelThinkingLevels = {
+        "openai/gpt-6-astra" = "low";
+        "openai/gpt-6.1-sol" = "medium";
+        "openai/gpt-6-luna" = "xhigh";
+      };
 
       showCacheMissNotices = true;
 
@@ -117,6 +123,7 @@ in
       enableInstallTelemetry = false;
       tuiMode = "fullscreen";
       fullscreenExitOutput = "resume-hint";
+      fullscreenScrollbar = "hidden";
 
       defaultTools = [
         "read"
@@ -126,6 +133,7 @@ in
         "grep"
         "find"
         "ls"
+        "codemode"
       ];
     };
 
