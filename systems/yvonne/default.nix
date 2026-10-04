@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
 {
   imports = [
@@ -55,6 +55,15 @@
     git
     uv
   ];
+
+  services.deluge = {
+    enable = true;
+    web = {
+      enable = true;
+      openFirewall = true;
+    };
+  };
+  users.users.tirr.extraGroups = [config.services.deluge.group];
 
   services.openssh = {
     enable = true;
