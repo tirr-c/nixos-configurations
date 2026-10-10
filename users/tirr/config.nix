@@ -38,6 +38,8 @@
     signByDefault = true;
   };
 
+  programs.gh.enable = true;
+
   programs.htop.settings = {
     fields = "0 48 17 18 38 39 40 2 46 47 49 1";
     sort_key = "46";
