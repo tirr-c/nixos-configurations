@@ -16,10 +16,6 @@
   ];
 
   hardware.enableRedistributableFirmware = true;
-  hardware.raspberry-pi.firmware = {
-    enable = true;
-    uboot.enable = true;
-  };
 
   networking.useNetworkd = true;
   networking.interfaces.end0.useDHCP = true;
