@@ -25,6 +25,7 @@ in
       oidc = {
         issuer = "https://keycloak.veritas.tirr.network/realms/master";
         client_id = "headscale";
+        client_secret_path = config.age.secrets.headscale-oidc-client-secret.path;
         allowed_groups = ["/tailnet"];
         scope = ["openid" "profile" "email" "groups"];
         pkce = {
