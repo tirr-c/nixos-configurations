@@ -9,15 +9,20 @@ in
     (final: prev: (
       let
         replaceJre = builtins.replaceStrings [(lib.getExe prev.jre)] [(lib.getExe prev.openjdk25)];
+        hashBase16 = "4208a692538104ec88699c0e078b2b89842920a10472ebb37e72cdda27c0d80e";
       in
       {
-        papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: {
-          version = "26.1.2-60";
-          hash = "sha256-agOzZdZsaK0NT+hDxRGD182/sg+j0RskI5hGSPS8nlc=";
+        papermc = prev.papermc.overrideAttrs (finalAttrs: prevAttrs: rec {
+          version = "26.3-206";
+          hash = builtins.convertHash {
+            hash = hashBase16;
+            hashAlgo = "sha256";
+            toHashFormat = "sri";
+          };
 
           src = pkgs.fetchurl {
-            url = "https://fill-data.papermc.io/v1/objects/6a03b365d66c68ad0d4fe843c51183d7cdbfb20fa3d11b2423984648f4bc9e57/paper-26.1.2-60.jar";
-            inherit (finalAttrs) hash;
+            url = "https://fill-data.papermc.io/v1/objects/${hashBase16}/paper-${version}.jar";
+            inherit hash;
           };
 
           installPhase = replaceJre prevAttrs.installPhase;

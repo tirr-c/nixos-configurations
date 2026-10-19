@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   users.users = {
@@ -6,8 +6,6 @@
       isNormalUser = true;
       description = "Chihiro";
       extraGroups = ["wheel"];
-      packages = with pkgs; [
-      ];
     };
 
     tirr = {
@@ -15,8 +13,7 @@
       description = "Tirr";
       extraGroups = ["wheel"];
       shell = pkgs.zsh;
-      packages = with pkgs; [
-      ];
+      openssh.authorizedKeys.keyFiles = [ ../../users/tirr/authorized_keys ];
     };
 
     papermc = {
