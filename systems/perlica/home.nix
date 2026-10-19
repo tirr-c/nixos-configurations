@@ -1,8 +1,6 @@
-{ inputs, ... }:
-
 {
   imports = [
-    inputs.self.lib.homeModules.tirr-minimal
+    ../../users/tirr/minimal.nix
   ];
 
   programs.ssh.enable = true;

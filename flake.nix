@@ -39,17 +39,10 @@
 
   outputs = inputs@{ self, nixpkgs, agenix-rekey, ... }:
     let
-      lib =
-        let
-          usersLib = import ./users/lib.nix inputs;
-        in
-        usersLib;
-
       overlays = import ./overlays inputs;
 
       commonSpecialArgs = {
         inherit inputs;
-        flakeLib = lib;
       };
 
       nixosConfigurations = {
@@ -155,7 +148,7 @@
     in
 
     {
-      inherit nixosConfigurations lib overlays;
+      inherit nixosConfigurations overlays;
 
       agenix-rekey = agenix-rekey.configure {
         userFlake = self;

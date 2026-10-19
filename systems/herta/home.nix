@@ -1,8 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
-    inputs.self.lib.homeModules.tirr
+    ../../users/tirr/config.nix
+    ../../users/tirr/pi
     ../../modules/pi-coding-agent.nix
   ];
 
@@ -96,55 +97,6 @@
       pkgs.bubblewrap
       pkgs.wl-clipboard
     ];
-
-    settings = {
-      defaultProvider = "openai";
-      defaultModel = "gpt-6.1-sol";
-      enabledModels = [
-        "openai/gpt-6-astra"
-        "openai/gpt-6.1-sol"
-        "openai/gpt-6-luna"
-      ];
-      modelThinkingLevels = {
-        "openai/gpt-6-astra" = "low";
-        "openai/gpt-6.1-sol" = "medium";
-        "openai/gpt-6-luna" = "xhigh";
-      };
-
-      showCacheMissNotices = true;
-
-      collapseChangelog = true;
-      enableInstallTelemetry = false;
-      tuiMode = "fullscreen";
-      fullscreenExitOutput = "resume-hint";
-      fullscreenScrollbar = "hidden";
-
-      defaultTools = [
-        "read"
-        "bash"
-        "edit"
-        "write"
-        "grep"
-        "find"
-        "ls"
-        "codemode"
-      ];
-    };
-
-    keybindings =
-      let
-        esc = ["escape" "ctrl+["];
-      in
-      {
-        "app.interrupt" = esc;
-        "tui.select.cancel" = esc;
-        "tui.altScreen.halfPageUp" = "ctrl+b";
-        "tui.altScreen.halfPageDown" = "ctrl+f";
-        "tui.altScreen.lineUp" = "ctrl+up";
-        "tui.altScreen.lineDown" = "ctrl+down";
-        "tui.altScreen.search" = "ctrl+/";
-        "tui.altScreen.searchClose" = esc;
-      };
   };
 
   programs.ssh.enable = true;
