@@ -2,6 +2,9 @@
 
 {
   imports = [
+    ../../modules/frostracker
+    ../../modules/nocodb
+
     ../profiles/base.nix
     ../profiles/graphical.nix
     ../profiles/nvidia.nix
@@ -25,6 +28,8 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+
+  networking.hostName = "chihiro";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

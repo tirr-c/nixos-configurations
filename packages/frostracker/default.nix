@@ -3,23 +3,20 @@
   buildNpmPackage,
   nodejs,
   writeShellScriptBin,
+
+  appSrc,
+  npmDepsHash,
   ...
 }:
 
 let
   pname = "frostracker";
-  rev = "14025aadcad97b8d1d29cbb3146eaf11051c0d0c";
-  npmDepsHash = "sha256-xLUPn4JPM2MC9N6tY8RvsB9AFTBo12nuK/QsWlU1Xfo=";
 
   app = buildNpmPackage {
     inherit pname;
-    version = "0-unstable-${rev}";
+    version = "0-unstable";
 
-    src = fetchGit {
-      url = "ssh+git://git@github.com/ektnzpt1080/frosthaven-tracker.git";
-      inherit rev;
-    };
-
+    src = appSrc;
     inherit npmDepsHash;
 
     buildPhase = ''

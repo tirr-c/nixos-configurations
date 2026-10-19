@@ -197,6 +197,22 @@
         "type": "github"
       }
     },
+    "frostracker": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787898779,
+        "narHash": "sha256-cTaRRvQzA3qCvTbPvxSufdIkQ+5ohYjFYmCXAdf6b18=",
+        "ref": "refs/heads/main",
+        "rev": "14025aadcad97b8d1d29cbb3146eaf11051c0d0c",
+        "revCount": 30,
+        "type": "git",
+        "url": "https://github.com/ektnzpt1080/frosthaven-tracker.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/ektnzpt1080/frosthaven-tracker.git"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -362,6 +378,7 @@
         "agenix": "agenix",
         "agenix-rekey": "agenix-rekey",
         "fenix": "fenix",
+        "frostracker": "frostracker",
         "home-manager": "home-manager",
         "misskey": "misskey",
         "nixos-hardware": "nixos-hardware",

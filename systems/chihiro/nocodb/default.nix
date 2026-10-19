@@ -17,7 +17,8 @@ in
   };
 
   services.nocodb-webhooks = {
-    enable = true;
+    # TODO: migrate to Node.js
+    # enable = true;
     serveAddress = "tcp:0.0.0.0:54443";
     kakaoApiKeyPath = config.age.secrets.kakao-api-key.path;
     nocodb = {

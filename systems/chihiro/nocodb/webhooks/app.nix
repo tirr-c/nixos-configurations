@@ -17,7 +17,7 @@ let
     hash = "sha256-9CwmJ40A9ZB+GsEjt4NvOoutZ4+uBPxIf7UhnwBsfGg=";
   };
 
-  # FIXME: this seems indeterministic
+  # TODO: migrate to Node.js
   depsHash = "sha256-VJA+Nfe9hskMaRG5fLp1vHHFMO/nzeSMDvyARMVJ+rA=";
   denoDeps = stdenvNoCC.mkDerivation {
     name = "${pname}-deps";

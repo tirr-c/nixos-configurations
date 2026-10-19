@@ -1,7 +1,10 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 let
-  frostracker = pkgs.callPackage ../../packages/frostracker {};
+  frostracker = pkgs.callPackage ../../packages/frostracker {
+    appSrc = inputs.frostracker;
+    npmDepsHash = "sha256-xLUPn4JPM2MC9N6tY8RvsB9AFTBo12nuK/QsWlU1Xfo=";
+  };
   port = config.services.frostracker.port;
 in
 
@@ -14,7 +17,7 @@ in
   services.caddy.virtualHosts."https://100.64.0.3:3972" = {
     extraConfig = ''
       tls internal
-      reverse_proxy localhost:${builtins.toString port}
+      reverse_proxy localhost:${toString port}
     '';
   };
 

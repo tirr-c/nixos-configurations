@@ -35,6 +35,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-darwin-x64.follows = "";
     };
+    frostracker = {
+      url = "git+https://github.com/ektnzpt1080/frosthaven-tracker.git";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, agenix-rekey, ... }:
@@ -66,8 +70,6 @@
           } // commonSpecialArgs;
 
           modules = [
-            ./modules/frostracker
-            ./modules/nocodb
             ./systems/chihiro
           ];
         };
