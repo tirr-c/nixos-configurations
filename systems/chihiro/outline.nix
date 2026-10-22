@@ -1,8 +1,19 @@
-{ config, ... }:
+{ config, inputs, ... }:
+
+let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = config.nixpkgs.hostPlatform.system;
+    config = {
+      allowUnfree = true;
+    };
+  };
+in
 
 {
   services.outline = {
     enable = true;
+    package = pkgsUnstable.outline;
+
     publicUrl = "https://outline.veritas.tirr.network";
     port = 56029;
     storage.storageType = "local";
