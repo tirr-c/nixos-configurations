@@ -13,6 +13,8 @@
     kubelogin-oidc
     nixd
     p7zip
+    ty
+    uv
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
     mosh
   ]);
@@ -79,7 +81,7 @@
 
     plugins =
       let
-        vimPlugins = with pkgs.vimPlugins; [
+        vimPlugins = [
         ];
         syntaxPlugins = with pkgs.vimPlugins; [
           rust-vim
@@ -97,7 +99,7 @@
         files = [
           ./vim/jsx.vim
         ];
-        fileContents = builtins.map lib.fileContents files;
+        fileContents = map lib.fileContents files;
       in
       lib.mkAfter ((builtins.concatStringsSep "\n" fileContents) + "\n");
   };
