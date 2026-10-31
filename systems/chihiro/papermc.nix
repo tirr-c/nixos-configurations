@@ -2,6 +2,8 @@
 
 let
   serverDirectory = config.users.users.papermc.home;
+
+  bluemapHostname = "bluemap.veritas.tirr.network";
 in
 
 {
@@ -61,10 +63,10 @@ in
   };
 
   # Bluemap
-  services.caddy.virtualHosts."https://100.64.0.3:8100" = {
-    extraConfig = ''
-      tls internal
+  services.caddy.virtualHosts.${bluemapHostname} = {
+    useACMEHost = bluemapHostname;
 
+    extraConfig = ''
       root * ${serverDirectory}/bluemap/web
 
       file_server
@@ -86,4 +88,6 @@ in
       reverse_proxy /maps/* localhost:58100
     '';
   };
+
+  security.acme.certs.${bluemapHostname} = {};
 }

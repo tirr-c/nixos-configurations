@@ -16,6 +16,7 @@
     ./users.nix
     ./agenix.nix
 
+    ./acme.nix
     ./caddy.nix
     ./calibre.nix
     ./frostracker.nix

@@ -9,6 +9,7 @@
   age.rekey.hostPubkey = ./host-pubkey.pub;
 
   age.secrets = {
+    cloudflare-token.rekeyFile = ../../secrets/master/cloudflare-token/tirr.network-chihiro.age;
     keycloak-db.rekeyFile = ../../secrets/master/keycloak-db.age;
     zfs-veritas.rekeyFile = ../../secrets/master/zfs-veritas.age;
     outline-oidc-secret = {
