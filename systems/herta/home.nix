@@ -1,4 +1,14 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
+
+let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+  };
+
+  pi-coding-agent = pkgsUnstable.pi-coding-agent.override {
+    inherit (pkgs) buildNpmPackage;
+  };
+in
 
 {
   imports = [
@@ -90,7 +100,7 @@
 
   programs.pi-coding-agent = {
     enable = true;
-    package = pkgs.pi;
+    package = pi-coding-agent;
     extraPackages = [
       pkgs.nodejs
       pkgs.python3

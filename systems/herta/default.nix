@@ -23,8 +23,6 @@
     libjxl-dev
     p7zip-default-unfree
     libdispatch-disable-swift
-
-    inputs.pi.overlays.default
   ];
 
   nixpkgs.config = {
