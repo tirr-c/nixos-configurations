@@ -2,40 +2,32 @@
   lib,
   buildNpmPackage,
   fetchFromForgejo,
-  nodejs_22,
+  nodejs,
   writeShellScriptBin,
   ...
 }:
 
 let
-  nodejs = nodejs_22;
-
-  pname = "out-of-your-element";
-
-  rev = "d2ea49cefd0b60bbdddff715ad4f8744d13df7a7";
-  hash = "sha256-4tPZE/Ij8xUkP9yFQ7LDbklSRWu1aEHOurnkXLt/k90=";
-  npmDepsHash = "sha256-cte2ouQeLxfQLtzXZT49VHxr30HXG91lV/xjsN3Whn4=";
-
   ooye = buildNpmPackage (finalAttrs: {
-    inherit pname;
-    version = "0-unstable-${rev}";
+    pname = "out-of-your-element";
+    version = "3.8.2";
 
     src = fetchFromForgejo {
       domain = "gitdab.com";
       owner = "cadence";
       repo = "out-of-your-element";
-      inherit rev hash;
+      rev = "v${finalAttrs.version}";
+      hash = "sha256-o5T/feGrwKTB0BJ5HZbaw/q2e+/uzSzBBHJHpgrGKnI=";
     };
 
+    npmDepsHash = "sha256-a/4bZ1tKpI28ndOqdzsB+PsrPpnJTlBygOkMjNSmPY4=";
     dontNpmBuild = true;
-
-    inherit npmDepsHash;
 
     inherit nodejs;
   });
 in
 
-writeShellScriptBin pname ''
+writeShellScriptBin "out-of-your-element" ''
   set -eu
 
   case "''${1:-}" in
