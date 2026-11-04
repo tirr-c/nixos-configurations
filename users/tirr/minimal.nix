@@ -106,7 +106,7 @@ in
           ./vim/airline.vim
           ./vim/fzf.vim
         ];
-        fileContents = builtins.map lib.fileContents files;
+        fileContents = map lib.fileContents files;
       in
       lib.mkMerge [
         (lib.mkAfter "colo tirr\n")

@@ -14,5 +14,5 @@
     shell = pkgs.zsh;
     openssh.authorizedKeys.keyFiles = [../../users/tirr/authorized_keys];
   };
-  home-manager.users.tirr = ../../users/tirr/minimal.nix;
+  home-manager.users.tirr = ./home.nix;
 }
