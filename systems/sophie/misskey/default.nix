@@ -13,7 +13,7 @@ in
     wants = ["network-online.target"];
     wantedBy = ["multi-user.target"];
     serviceConfig = {
-      ExecStart = "${misskey}/bin/misskey-server ${./config.json}";
+      ExecStart = "${misskey}/bin/misskey-server ${./config.yaml}";
       RuntimeDirectory = "misskey";
       RuntimeDirectoryMode = "700";
       StateDirectory = "misskey";
