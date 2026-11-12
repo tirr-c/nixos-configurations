@@ -13,6 +13,12 @@
     bypassWorkqueues = true;
   };
 
+  boot.initrd.luks.devices."luks-0d1af88f-7eaf-4de1-b596-16c30d6c2daf" = {
+    device = "/dev/disk/by-uuid/0d1af88f-7eaf-4de1-b596-16c30d6c2daf";
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/B26D-DC6A";
     fsType = "vfat";
