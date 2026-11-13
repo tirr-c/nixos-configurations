@@ -4,7 +4,13 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/d1a65dde-72f6-4f88-b800-bfdf1171f2fe";
     fsType = "btrfs";
-    options = ["subvol=@"];
+    options = ["noatime" "subvol=@"];
+  };
+
+  fileSystems."/srv/cache" = {
+    device = "/dev/disk/by-label/herta-cache";
+    fsType = "btrfs";
+    options = ["noatime"];
   };
 
   boot.initrd.luks.devices."luks-b2ab300b-5e98-4eca-b4c0-acfd5a7ad033" = {
