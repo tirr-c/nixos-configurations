@@ -124,6 +124,7 @@
     unityhub
     wineWow64Packages.staging
     winetricks
+    yubikey-personalization
   ];
 
   programs._1password.enable = true;
