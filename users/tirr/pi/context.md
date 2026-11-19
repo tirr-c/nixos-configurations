@@ -17,14 +17,8 @@ Some notes about various built-in tools:
 
 ## Writing tests
 
-Avoid writing unit tests to cover all of the code paths. Instead, focus on user stories written in
-natural language, and test them in the form of integration or E2E tests. Only write unit tests when
-the user asks so.
-
-## Running tests
-
-Minimize outputs from the test harness \(e.g. `--quiet`\). Prefer `cargo nextest` when running Rust
-tests.
+Do not write unit tests for internal components, or failure paths of the code, unless explicitly
+asked so. Instead, focus on writing E2E tests, which can be described in plain natural language.
 
 ## Local development environment
 
@@ -40,6 +34,12 @@ directory does not exist, and add `.worktrees/.gitignore` to ignore all subdirec
 of this `.gitignore` is to ignore the whole `.worktrees` directory; write only `*`, and do not add
 `!.gitignore` to the list.
 
+## Using development tools
+
+Minimize outputs from the build tool and test harness (e.g. `--quiet` for `cargo build`).
+
+Prefer `cargo nextest` when running Rust tests.
+
 ## Reviewing
 
 When reviewing a GitHub PR, checkout the PR first into a worktree:
@@ -50,3 +50,8 @@ gh pr checkout <PR> --detach --worktree .worktrees/<...>
 # or, without gh:
 git fetch upstream pull/<PR>/head && git worktree add .worktrees/<...> FETCH_HEAD
 ```
+
+## Handling discrepancy between documentation and code
+
+When documentation and existing code disagree, follow the conventions used in the existing code, and
+in your final reply point out each inconsistency you found between the documentation and the code.
