@@ -3,19 +3,19 @@
 {
   programs.pi-coding-agent = {
     settings = {
-      defaultProvider = "openai";
-      defaultModel = "gpt-6.1-sol";
+      defaultProvider = "openai-codex";
+      defaultModel = "gpt-6.2-sol";
       enabledModels = [
-        "openai/gpt-6-astra"
-        "openai/gpt-6.1-sol"
-        "openai/gpt-6.1-terra"
-        "openai/gpt-6-luna"
+        "openai-codex/gpt-6.2-astra"
+        "openai-codex/gpt-6.2-sol"
+        "openai-codex/gpt-6.1-terra"
+        "openai-codex/gpt-6-luna"
       ];
       modelThinkingLevels = {
-        "openai/gpt-6-astra" = "low";
-        "openai/gpt-6.1-sol" = "high";
-        "openai/gpt-6.1-terra" = "high";
-        "openai/gpt-6-luna" = "xhigh";
+        "openai-codex/gpt-6.2-astra" = "medium";
+        "openai-codex/gpt-6.2-sol" = "high";
+        "openai-codex/gpt-6.1-terra" = "high";
+        "openai-codex/gpt-6-luna" = "xhigh";
       };
 
       showCacheMissNotices = true;
