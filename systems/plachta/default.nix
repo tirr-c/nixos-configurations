@@ -3,12 +3,14 @@
 {
   imports = [
     ../profiles/base.nix
-    ./hardware-configuration.nix
+
+    ./agenix.nix
     ./disks.nix
+    ./hardware-configuration.nix
+    ./harmonia.nix
+    ./immich.nix
     ./users.nix
     ./zrepl.nix
-    ./harmonia.nix
-    ./agenix.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
