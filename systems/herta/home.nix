@@ -5,9 +5,7 @@ let
     system = pkgs.stdenv.hostPlatform.system;
   };
 
-  pi-coding-agent = pkgsUnstable.pi-coding-agent.override {
-    inherit (pkgs) buildNpmPackage;
-  };
+  pi-coding-agent = pkgsUnstable.pi-coding-agent;
 in
 
 {
